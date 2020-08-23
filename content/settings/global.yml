@@ -1,39 +1,35 @@
 siteConfig:
   disqusShortname: ""
   socialMediaCard:
-    image: https://ucarecdn.com/37bf29a4-dcb3-456b-afc0-f34d138c3f77/
-  copyright: © 2020 Yoshiki Ohashi All rights reserved.
+    image: ""
+  copyright: © 2020 Subsc Map All rights reserved.
   author:
-    name: Yoshiki Ohashi
-    photo: /media/icon.jpg
-    bio: 2x歳の個人事業主エンジニア。SI企業1年, Webベンチャー企業2年で上流から下流の経験を経て独立。
-      エンジニアらしく性格は温和。プロジェクトチームに心理的安全性を求める。go gin | Spring | Java | Kotlin | Vue |
-      Python | 筋トレ | キャンプ | 個人開発 | 新潟出身
+    name: サブスクマスター
+    photo: https://ucarecdn.com/6aed5af7-cb03-4d2e-a01f-f6db846f9795/
+    bio: サブスクを使い始めて早5年。世の中にあるほとんどのサブスクを試して毎月不要なものを取捨選択をしている。本当に必要なサブスクサービスをこのブログを通して発信していきます！結局最強はAmazon
+      PrimeとNetflix。これさえあれば人生のQoLは上がります。
     contacts:
       telegram: ""
       youtube: ""
-      github: yoshiki-0428
+      github: ""
       soundcloud: ""
-      facebook: yoshiki.ohashi0428
+      facebook: ""
       weibo: ""
       codepen: ""
       rss: /rss.xml
       instagram: ""
-      twitter: yoshiki__0428
+      twitter: ""
       line: ""
       gitlab: ""
       vkontakte: ""
-      email: rrrtcdish2+gatsby@gmail.com
+      email: ""
       linkedin: ""
-  headerImage: /media/dark_header.png
-  url: https://gatsby-all-pack-theme-starter.netlify.app/
-  topContents:
-    - url: /posts/start-blog
-    - url: /posts/start-blog-top
-    - url: /posts/start-blog-2
+  headerImage: ""
+  url: https://subsc-map.com
+  topContents: []
   pathPrefix: /
-  subtitle: フリーランスWebエンジニアYoshikiOhashiのTech Blog
-  title: Blog by yoshiki ohashi
+  subtitle: 本当に必要だったサブスクサービスをあなたに
+  title: サブスクマップ
   postsPerPage: 10
   popularView:
     googleAnalyticsStartDate: 60daysAgo
@@ -42,26 +38,22 @@ siteConfig:
     googleAnalyticsFiltersUrl: /posts
     googleAnalyticsPageSize: 5
   menu:
-    - label: My Portfolio
-      path: https://yoshikiohashi.dev/
     - label: About me
       path: /pages/about
-    - label: Blog Source Code
-      path: https://github.com/yoshiki-0428/gatsby-all-pack-theme-starter
 siteDesign:
-  white: "#1F1F1F"
+  white: "#FFFFFF"
   primary: "#00FFC5"
-  accent: "#0095FB"
-  baseBack: "#121212"
-  baseFont: "#FAFAFA"
-  baseGray: "#3F3F3F"
-  baseGrayLight: "#4E4E4E"
+  accent: "#007ACE"
+  baseBack: "#ebebeb"
+  baseFont: "#141414"
+  baseGray: "#A2A7A5"
+  baseGrayLight: "#DAE2DF"
   rounded: 8px
 secretConfig:
   algoliaAppId: XIKSJSCPJ3
   algoliaSearchApiKey: a0eb781d9e8354258d74c311a05f0cc1
-  algoliaIndexName: gatsby-all-pack-theme-starter
-  googleAdsnseClientId: ca-pub-1075201051914394
+  algoliaIndexName: subsc-map
+  googleAdsnseClientId: ""
   googleAdsnseClientSlot: ""
-  googleAnalyticsId: UA-157574909-4
-  googleAnalyticsViewId: "225476419"
+  googleAnalyticsId: ""
+  googleAnalyticsViewId: ""
