@@ -22,7 +22,7 @@ siteConfig:
       line: ""
       gitlab: ""
       vkontakte: ""
-      email: ""
+      email: rrrtcdish2+subsc@gmail.com
       linkedin: ""
   headerImage: ""
   url: https://subsc-map.com
@@ -46,7 +46,7 @@ siteConfig:
 siteDesign:
   white: "#FFFFFF"
   primary: "#5BC0EB"
-  accent: "#84CAC4"
+  accent: "#C3423F"
   baseBack: "#ebebeb"
   baseFont: "#141414"
   baseGray: "#A2A7A5"
