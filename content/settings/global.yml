@@ -45,8 +45,8 @@ siteConfig:
       path: /pages/about
 siteDesign:
   white: "#FFFFFF"
-  primary: "#00FFC5"
-  accent: "#007ACE"
+  primary: "#5BC0EB"
+  accent: "#84CAC4"
   baseBack: "#ebebeb"
   baseFont: "#141414"
   baseGray: "#A2A7A5"
