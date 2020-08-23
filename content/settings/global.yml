@@ -26,7 +26,10 @@ siteConfig:
       linkedin: ""
   headerImage: ""
   url: https://subsc-map.com
-  topContents: []
+  topContents:
+    - url: /posts/
+    - url: /posts/
+    - url: /posts/
   pathPrefix: /
   subtitle: 本当に必要だったサブスクサービスをあなたに
   title: サブスクマップ
