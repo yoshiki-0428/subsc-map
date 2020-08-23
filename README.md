@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c04a44ac-d26e-4471-8cc7-929be2ae980e/deploy-status)](https://app.netlify.com/sites/gatsby-all-pack-theme-starter/deploys)
+
 
 ![](https://img.esa.io/uploads/production/attachments/15569/2020/08/03/84487/c0055f0b-8732-4943-8b05-029608a12334.png)
 
