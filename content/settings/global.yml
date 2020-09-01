@@ -41,8 +41,6 @@ siteConfig:
     googleAnalyticsFiltersUrl: /posts
     googleAnalyticsPageSize: 5
   menu:
-    - label: お問い合わせ はこちら
-      path: /pages/contact
 siteDesign:
   white: "#FFFFFF"
   primary: "#5BC0EB"
