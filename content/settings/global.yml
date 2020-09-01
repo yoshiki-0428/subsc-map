@@ -1,5 +1,5 @@
 siteConfig:
-  disqusShortname: ""
+  disqusShortname: subsc-map
   socialMediaCard:
     image: ""
   copyright: © 2020 Subsc Map All rights reserved.
@@ -41,8 +41,8 @@ siteConfig:
     googleAnalyticsFiltersUrl: /posts
     googleAnalyticsPageSize: 5
   menu:
-    - label: About me
-      path: /pages/about
+    - label: お問い合わせ はこちら
+      path: /pages/contact
 siteDesign:
   white: "#FFFFFF"
   primary: "#5BC0EB"
@@ -58,5 +58,5 @@ secretConfig:
   algoliaIndexName: subsc-map
   googleAdsnseClientId: ""
   googleAdsnseClientSlot: ""
-  googleAnalyticsId: ""
-  googleAnalyticsViewId: ""
+  googleAnalyticsId: UA-157574909-5
+  googleAnalyticsViewId: "227967873"
