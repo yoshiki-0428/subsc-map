@@ -41,6 +41,8 @@ siteConfig:
     googleAnalyticsFiltersUrl: /posts
     googleAnalyticsPageSize: 5
   menu:
+    - label: このブログ運営を行う理由
+      path: /pages/delivery-blogs
 siteDesign:
   white: "#FFFFFF"
   primary: "#5BC0EB"
