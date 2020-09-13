@@ -24,7 +24,7 @@ siteConfig:
       vkontakte: ""
       email: rrrtcdish2+subsc@gmail.com
       linkedin: ""
-  headerImage: https://ucarecdn.com/fc30df4a-ec0f-4b4e-a19a-c8a074d49140/-/crop/1166x274/234,0/-/preview/
+  headerImage: /media/header.png
   url: https://subsc-map.com
   topContents:
     - url: /posts/
@@ -56,7 +56,7 @@ secretConfig:
   algoliaAppId: XIKSJSCPJ3
   algoliaSearchApiKey: a0eb781d9e8354258d74c311a05f0cc1
   algoliaIndexName: subsc-map
-  googleAdsnseClientId: ""
+  googleAdsnseClientId: "ca-pub-1075201051914394"
   googleAdsnseClientSlot: ""
   googleAnalyticsId: UA-157574909-5
   googleAnalyticsViewId: "227967873"
