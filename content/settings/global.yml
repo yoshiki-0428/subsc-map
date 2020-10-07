@@ -27,9 +27,9 @@ siteConfig:
   headerImage: /media/header.png
   url: https://subsc-map.com
   topContents:
-    - url: /posts/
-    - url: /posts/
-    - url: /posts/
+    - url: /posts/subsc-music-5-list
+    - url: /posts/subsc-online-programming
+    - url: /posts/subsc-car-sharing-all
   pathPrefix: /
   subtitle: 本当に必要だったサブスクサービスをあなたに
   title: サブスクマップ
