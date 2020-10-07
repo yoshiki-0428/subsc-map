@@ -20,6 +20,7 @@ const useSiteMetadata = () => {
                   instagram
                   email
                   rss
+                  feedly
                   vkontakte
                   line
                   gitlab

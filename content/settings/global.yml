@@ -1,7 +1,7 @@
 siteConfig:
   disqusShortname: subsc-map
   socialMediaCard:
-    image: ""
+    image: "https://ucarecdn.com/e8330a2a-dc99-4587-92e6-5b69129440d6/"
   copyright: © 2020 Subsc Map All rights reserved.
   author:
     name: サブスクマスター
@@ -17,6 +17,7 @@ siteConfig:
       weibo: ""
       codepen: ""
       rss: /rss.xml
+      feedly: https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fsubsc-map.com%2Frss.xml
       instagram: ""
       twitter: ""
       line: ""
@@ -41,8 +42,8 @@ siteConfig:
     googleAnalyticsFiltersUrl: /posts
     googleAnalyticsPageSize: 5
   menu:
-    - label: このブログ運営を行う理由
-      path: /pages/delivery-blogs
+    - label: ""
+      path: ""
 siteDesign:
   white: "#FFFFFF"
   primary: "#5BC0EB"
