@@ -43,6 +43,9 @@ const useSiteMetadata = () => {
               copyright
               disqusShortname
               headerImage
+              socialMediaCard {
+                image
+              }
             }
           }
         }
