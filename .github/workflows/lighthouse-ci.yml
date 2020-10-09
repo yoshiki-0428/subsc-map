@@ -11,6 +11,9 @@ jobs:
         with:
           node-version: 10.x
       - name: npm install, build
+        env:
+          ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
+          GA_CRED: ${{ secrets.GA_CRED }}
         run: |
           npm install
           npm run build
