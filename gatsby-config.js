@@ -67,7 +67,6 @@ module.exports = {
         feeds: [{
           serialize: ({ query: { site, allMarkdownRemark } }) => (
             allMarkdownRemark.edges
-              .filter((edge) => new Date(edge.node.frontmatter.date) < new Date())
               .map((edge) => ({
                 ...edge.node.frontmatter,
                 description: edge.node.frontmatter.description,
@@ -200,9 +199,7 @@ module.exports = {
                 }
               }`,
               transformer: ({ data }) =>
-                data.allMarkdownRemark.edges.filter((edge) => {
-                  return new Date(edge.node.frontmatter.date) < new Date();
-                }).flatMap(({ node }) => {
+                data.allMarkdownRemark.edges.flatMap(({ node }) => {
                   return {
                     id: node.fields.slug,
                     title: node.frontmatter.title,
