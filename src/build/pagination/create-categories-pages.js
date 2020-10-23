@@ -29,7 +29,6 @@ module.exports = async (graphql, actions) => {
         component: path.resolve('./src/templates/categories-list-template.js'),
         context: {
           category: category.fieldValue,
-          date: '2020-10-23T09:00:00',
           currentPage: i,
           postsLimit: postsPerPage,
           postsOffset: i * postsPerPage,

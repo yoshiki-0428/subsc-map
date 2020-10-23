@@ -24,7 +24,7 @@ const createPages = async ({ graphql, actions }) => {
   createPage({
     path: '/category',
     component: path.resolve('./src/templates/categories-list-template.js'),
-    context: { category: "*", date: '2020-10-23T09:00:00' }
+    context: { category: "*" }
   });
 
   // Posts and pages from markdown
@@ -48,7 +48,6 @@ const createPages = async ({ graphql, actions }) => {
   `);
 
   const { edges } = result.data.allMarkdownRemark;
-  edges.filter((edge) => new Date(edge.node.frontmatter.date) < new Date());
 
   _.each(edges, (edge) => {
     if (_.get(edge, 'node.frontmatter.template') === 'page') {
