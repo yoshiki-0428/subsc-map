@@ -1,23 +1,26 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import {useAllMarkdownRemarkForPopularList, useSiteMetadata, useCategoriesList} from '../../hooks';
-import tw from "twin.macro"
-import {Link} from "gatsby";
-import ImageWrap from "../Image/ImageWrap";
-import {SPACER, TEXT_GATSBY_LINK_H3} from "../Tailwind";
-import Header from "../Header";
+import tw from 'twin.macro';
+import { Link } from 'gatsby';
+import { useAllMarkdownRemarkForPopularList, useSiteMetadata, useCategoriesList } from '../../hooks';
+import ImageWrap from '../Image/ImageWrap';
+import { SPACER, TEXT_GATSBY_LINK_H3 } from '../Tailwind';
+import Header from '../Header';
 
 const Layout = ({
-    main,
-    side,
-    title,
-    description,
-    socialImage,
-    top = false
-  }) => {
-  const { author, copyright, topContents, headerImage } = useSiteMetadata();
+  main,
+  side,
+  title,
+  description,
+  socialImage,
+  top = false
+}) => {
+  const {
+    author, copyright, topContents, headerImage
+  } = useSiteMetadata();
+  const siteTitle = useSiteMetadata().title;
   const categories = useCategoriesList();
-  const items = useAllMarkdownRemarkForPopularList(topContents.map(top => top.url));
+  const items = useAllMarkdownRemarkForPopularList(topContents.map((top) => top.url));
   const metaImage = socialImage != null ? socialImage : author.photo;
 
   const Div = tw.div`flex flex-col min-h-screen bg-base-back`;
@@ -45,14 +48,28 @@ const Layout = ({
       <Helmet>
         <html lang="ja" />
         <title>{title}</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
+
+        <link rel="preconnect dns-prefetch" href="https://ucarecdn.com" crossOrigin/>
+        <link rel="preconnect dns-prefetch" href="https://ad.doubleclick.net" />
+        <link rel="preconnect dns-prefetch" href="https://googleads.g.doubleclick.net" />
+        <link rel="preconnect dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="preconnect dns-prefetch" href="https://www.googletagservices.com" />
+        <link rel="preconnect dns-prefetch" href="https://tpc.googlesyndication.com" />
+        <link rel="preconnect dns-prefetch" href="https://www.google.com" />
+        <link rel="preconnect dns-prefetch" href="https://tpc.googlesyndication.com" />
+        <link rel="preconnect dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="preconnect dns-prefetch" href="https://b.st-hatena.com" />
+
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
               integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8=" crossOrigin="anonymous"/>
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"/>
-        <link href="https://ucarecdn.com" rel="preconnect" crossOrigin/>
-        <link rel="dns-prefetch" href="https://ucarecdn.com"/>
 
         <meta name="description" content={description} />
-        <meta property="og:site_name" content={title} />
+        <meta property="og:site_name" content={siteTitle} />
+        <meta property="og:title" content={title} />
+        <meta property="og:url" content={typeof window === 'object' ? window.location.href : ''} />
+        <meta property="og:type" content={top ? 'website' : 'article'} />
+        <meta property="og:description" content={description} />
         <meta property="og:image" content={metaImage} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={title} />
@@ -68,7 +85,7 @@ const TopContents = ({ items }) => {
 
   return (
       <>
-        {items.slice(0, 3).map(item => (
+        {items.slice(0, 3).map((item) => (
             <TopContent key={item.slug}>
               <div tw="rounded-tr rounded-tl overflow-hidden bg-white">
                 <Link to={item.slug}>

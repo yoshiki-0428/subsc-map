@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
 import Page from '../components/Page';
 import { useSiteMetadata } from '../hooks';
-import {CARD, SPACER} from "../components/Tailwind";
+import { CARD, SPACER } from '../components/Tailwind';
 
 const PageTemplate = ({ data }) => {
   const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
@@ -38,6 +38,7 @@ export const query = graphql`
         date
         socialImage
       }
+      excerpt(truncate: true)
       tableOfContents
     }
   }

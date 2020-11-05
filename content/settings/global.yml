@@ -25,7 +25,7 @@ siteConfig:
       vkontakte: ""
       email: rrrtcdish2+subsc@gmail.com
       linkedin: ""
-  headerImage: /media/header.png
+  headerImage: https://ucarecdn.com/98b8def5-4e65-4d03-a16e-9fc82b7f7d3f/-/resize/400x/
   url: https://subsc-map.com
   topContents:
     - url: /posts/subsc-music-5-list
