@@ -38,7 +38,7 @@
     "gatsby-plugin-sitemap": "^2.4.7",
     "gatsby-plugin-twitter": "^2.3.10",
     "gatsby-remark-autolink-headers": "^2.2.1",
-    "gatsby-remark-copy-linked-files": "^2.2.1",
+    "gatsby-remark-copy-linked-files": "^2.6.0",
     "gatsby-remark-embed-youtube": "0.0.7",
     "gatsby-remark-external-links": "0.0.4",
     "gatsby-remark-images": "^3.2.2",
@@ -66,8 +66,9 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
     "react-instantsearch-dom": "^6.0.0",
-    "react-markdown": "^4.3.1",
-    "react-share": "^4.1.0"
+    "react-markdown": "^5.0.3",
+    "react-share": "^4.1.0",
+    "remark-gfm": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.9.0",

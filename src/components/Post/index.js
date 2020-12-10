@@ -1,7 +1,8 @@
 import React from 'react';
 import Disqus from 'gatsby-plugin-disqus';
 import { format } from 'date-fns';
-import { kebabCase } from 'lodash/string';
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
 import Tags from '../Tags';
 import { ShareSns } from '../ShareSns/ShareSns';
 import { useAllMarkdownRemarkForPopularList, useSiteMetadata, useTagsList } from '../../hooks';
@@ -14,27 +15,42 @@ import 'twin.macro';
 import Iframely from '../Iframely';
 import { YYYY_MM_DD } from '../../constants/dateFormat';
 
-const Post = ({ post }) => {
-  const { id, html } = post;
-  const { slug } = post.fields;
-  const {
-    title, socialImage, category, tags
-  } = post.frontmatter;
+// Tag Listから自分以外のタグで関連するURLを抽出
+const RelatedArticles = ({ tags, slug }) => {
   const group = useTagsList();
-  // Tag Listから自分以外のタグで関連するURLを抽出
-  const relatedLinks = group.filter((g) => tags.includes(g.fieldValue))
+  const tagIds = tags.map((t) => t.name);
+  const relatedLinks = group.filter((g) => tagIds.includes(g.fieldValue))
     .flatMap((g) => g.edges)
-    .map((edge) => edge.node.fields.slug)
+    .map((edge) => edge.node.slug)
     .filter((url) => url !== slug);
-  const { url, disqusShortname } = useSiteMetadata();
   const relatedArticles = relatedLinks
     ? useAllMarkdownRemarkForPopularList(Array.from(new Set(relatedLinks)))
     : [];
 
-  const convertTags = tags.map((tag) => ({ fieldValue: tag }));
-  const date = format(new Date(post.frontmatter.date), YYYY_MM_DD);
-  const updatedDate = post.frontmatter.updatedDate
-    ? format(new Date(post.frontmatter.updatedDate), YYYY_MM_DD)
+  if (relatedArticles.length === 0) {
+    return null;
+  }
+  return (
+    <CARD>
+      <SPACER>
+        <TITLE_H3>Related Links</TITLE_H3>
+        <HR/>
+        <InstantView flex items={relatedArticles} />
+      </SPACER>
+    </CARD>
+  );
+};
+
+
+const Post = ({ post }) => {
+  const { id, content, slug } = post;
+  const {
+    title, socialImage, category, tags
+  } = post;
+  const { url, disqusShortname } = useSiteMetadata();
+  const date = format(new Date(post.published_at), YYYY_MM_DD);
+  const updatedDate = post.updated_at
+    ? format(new Date(post.updated_at), YYYY_MM_DD)
     : null;
 
   return (
@@ -57,17 +73,17 @@ const Post = ({ post }) => {
           </TEXT_BASE_CENTER>
 
           <TITLE_H1>{title}</TITLE_H1>
-          <TEXT_GATSBY_LINK to={`/categories/${kebabCase(category)}`}>{category}</TEXT_GATSBY_LINK>
+          <TEXT_GATSBY_LINK to={`/categories/${category.id}`}>{category.name}</TEXT_GATSBY_LINK>
         </SPACER>
       </CARD>
-      <ImageWrap item={{ socialImage }} size={'normal'} />
+      <ImageWrap item={{ socialImage: socialImage.publicURL }} size={'normal'} />
       <CARD top>
         <SPACER>
           <ShareSns articleUrl={url + slug} articleTitle={title} />
           <div tw="my-4">
-            <div className={'content'} dangerouslySetInnerHTML={{ __html: html }} />
+            <ReactMarkdown plugins={[gfm]} className={'content'} source={content}/>
           </div>
-          <Tags tags={convertTags} urlPrefix={'tags'} />
+          <Tags tags={tags.map((tag) => ({ fieldValue: tag.name }))} urlPrefix={'tags'} />
           <ShareSns articleUrl={url + slug} articleTitle={title} />
         </SPACER>
       </CARD>
@@ -83,16 +99,7 @@ const Post = ({ post }) => {
             </SPACER>
           </CARD>
       }
-
-      {relatedArticles.length !== 0
-          && <CARD>
-            <SPACER>
-              <TITLE_H3>Related Links</TITLE_H3>
-              <HR/>
-              <InstantView flex items={relatedArticles} />
-            </SPACER>
-          </CARD>
-      }
+      <RelatedArticles tags={tags} slug={slug}/>
     </div>
   );
 };

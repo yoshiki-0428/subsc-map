@@ -1,22 +1,20 @@
 import { useStaticQuery, graphql } from 'gatsby';
 
 const useCategoriesList = () => {
-  const { allMarkdownRemark } = useStaticQuery(
+  const { allStrapiArticle } = useStaticQuery(
     graphql`
       query CategoriesListQuery {
-        allMarkdownRemark(
-          filter: { frontmatter: { template: { eq: "post" }, draft: { ne: true } } }
-        ) {
-          group(field: frontmatter___category) {
-            fieldValue
-            totalCount
+          allStrapiArticle {
+              group(field: category___name) {
+                  fieldValue
+                  totalCount
+              }
           }
-        }
       }
     `
   );
 
-  return allMarkdownRemark.group;
+  return allStrapiArticle.group;
 };
 
 export default useCategoriesList;

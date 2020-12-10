@@ -8,16 +8,14 @@ import 'twin.macro';
 
 const PostTemplate = ({ data }) => {
   const { title, subtitle } = useSiteMetadata();
-  const { frontmatter, excerpt } = data.markdownRemark;
+  // TODO excerpt
+  const { excerpt, title: postTitle, socialImage } = data.strapiArticle;
 
-  const postTitle = frontmatter.title;
-  const postDescription = frontmatter.description;
-  const { socialImage } = frontmatter;
-  const metaDescription = postDescription !== null ? excerpt : subtitle;
+  const metaDescription = subtitle;
 
-  const main = <Post post={data.markdownRemark} />;
-  const toc = <div className={'toc'} dangerouslySetInnerHTML={{ __html: data.markdownRemark.tableOfContents }}/>;
-  const side = <Sidebar toc={toc}/>;
+  const main = <Post post={data.strapiArticle} />;
+  // const toc = <div className={'toc'} dangerouslySetInnerHTML={{ __html: data.markdownRemark.tableOfContents }}/>;
+  const side = <Sidebar />;
   return (
     <Layout main={main}
             side={side}
@@ -29,24 +27,30 @@ const PostTemplate = ({ data }) => {
 
 export const query = graphql`
   query PostBySlug($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
-      html
-      fields {
-        slug
-        tagSlugs
+      strapiArticle(slug: {eq: $slug}) {
+          id
+          created_at
+          updated_at
+          published_at
+          slug
+          title
+          content
+          tags {
+              id
+              name
+          }
+          subscs {
+              id
+              name
+          }
+          socialImage {
+              publicURL
+          }
+          category {
+              id
+              name
+          }
       }
-      frontmatter {
-        date
-        updatedDate
-        tags
-        title
-        socialImage
-        category
-      }
-      excerpt(truncate: true)
-      tableOfContents
-    }
   }
 `;
 
