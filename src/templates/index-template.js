@@ -48,38 +48,38 @@ const IndexTemplate = ({ data, pageContext }) => {
 
 export const query = graphql`
   query IndexTemplate($postsLimit: Int!, $postsOffset: Int!) {
-    allStrapiArticle
-    (
-        limit: $postsLimit,
-        skip: $postsOffset,
-        sort: { fields: updated_at, order: DESC }
-    ) 
-    {
-      group(field: tags___id) {
-        fieldValue
-        totalCount
+      allStrapiArticle
+      (
+          limit: $postsLimit,
+          skip: $postsOffset,
+          sort: { fields: updated_at, order: DESC }
+      )
+      {
+          group(field: tags___id) {
+              fieldValue
+              totalCount
+          }
+          edges {
+              node {
+                  title
+                  published_at
+                  created_at
+                  updated_at
+                  slug
+                  socialImage {
+                      publicURL
+                  }
+                  category {
+                      id
+                      name
+                  }
+                  tags {
+                      id
+                      name
+                  }
+              }
+          }
       }
-      edges {
-        node {
-          title
-          published_at
-          created_at
-          updated_at
-          slug
-          socialImage {
-            publicURL
-          }
-          category {
-            id
-            name
-          }
-          tags {
-            id
-            name
-          }
-        }
-      }
-    }
   }
 `;
 
