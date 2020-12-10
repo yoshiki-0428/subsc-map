@@ -71,8 +71,8 @@ module.exports = {
           }
         `,
         feeds: [{
-          serialize: ({ query: { site, allMarkdownRemark } }) => (
-            allMarkdownRemark.edges.map((edge) => ({
+          serialize: ({ query: { site, allStrapiArticle } }) => (
+            allStrapiArticle.edges.map((edge) => ({
               ...edge.node,
               published_at: edge.node.published_at,
               url: site.siteMetadata.siteConfig.url + edge.node.slug,
