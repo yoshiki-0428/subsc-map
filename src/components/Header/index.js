@@ -107,10 +107,6 @@ export default class Header extends Component {
                 ))}
               </ContentInner>
             </Content>
-
-            <div tw="w-12 lg:w-auto">
-              <SearchComponent />
-            </div>
           </Nav>
         </StickyDiv>
     );
