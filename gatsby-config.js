@@ -42,7 +42,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-strapi',
       options: {
-        apiURL: 'https://subsc-backend.herokuapp.com',
+        apiURL: process.env.API_URI || 'https://subsc-backend.herokuapp.com',
         queryLimit: 1000, // Default to 100
         contentTypes: ['article', 'tag', 'subsc', 'category'],
       },
