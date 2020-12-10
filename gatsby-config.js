@@ -1,4 +1,3 @@
-const resolveConfig = require('tailwindcss/resolveConfig');
 const postCssPlugins = require('./postcss-config.js');
 
 const tailwindConfig = require('./tailwind.config.js');
@@ -39,6 +38,14 @@ module.exports = {
         name: 'css',
         path: `${__dirname}/static/css`
       }
+    },
+    {
+      resolve: 'gatsby-source-strapi',
+      options: {
+        apiURL: 'https://subsc-backend.herokuapp.com',
+        queryLimit: 1000, // Default to 100
+        contentTypes: ['article', 'tag', 'subsc', 'category'],
+      },
     },
     {
       resolve: 'gatsby-source-filesystem',

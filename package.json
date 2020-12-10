@@ -14,24 +14,6 @@
   },
   "repository": "https://github.com/yoshiki-0428/gatsby-all-pack-theme-starter",
   "author": "Yoshiki Ohashi <rrrtcdish2@gmail.com>",
-  "keywords": [
-    "gatsby",
-    "graphql",
-    "netlify",
-    "netlify-cms",
-    "pagination",
-    "categories",
-    "tags",
-    "prismjs",
-    "static",
-    "lost",
-    "blog",
-    "minimal",
-    "react",
-    "theme",
-    "starter",
-    "disqus"
-  ],
   "dependencies": {
     "algoliasearch": "^4.0.0",
     "gatsby": "2.25.1",
@@ -65,6 +47,7 @@
     "gatsby-remark-responsive-iframe": "^2.3.1",
     "gatsby-remark-smartypants": "^2.2.1",
     "gatsby-source-filesystem": "^2.2.2",
+    "gatsby-source-strapi": "^0.0.12",
     "gatsby-transformer-remark": "^2.7.1",
     "gatsby-transformer-sharp": "^2.4.4",
     "google-auth-library": "^6.0.5",
@@ -88,6 +71,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.9.0",
+    "@babel/helper-validator-option": "^7.12.1",
     "@babel/plugin-proposal-class-properties": "7.8.3",
     "@babel/plugin-proposal-optional-chaining": "7.9.0",
     "@babel/plugin-transform-flow-strip-types": "^7.9.0",
@@ -131,5 +115,10 @@
       "hasSuggestions": true,
       "debug": false
     }
+  },
+  "babel": {
+    "presets": [
+      "babel-preset-gatsby"
+    ]
   }
 }
