@@ -12,7 +12,6 @@ const createSchemaCustomization = async ({ actions, schema }) => {
       }
     `);
 
-
     createTypes(
       schema.buildObjectType({
         name: 'PopularPage',

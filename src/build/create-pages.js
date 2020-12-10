@@ -22,47 +22,32 @@ const createPages = async ({ graphql, actions }) => {
 
   // Categories list
   createPage({
-    path: '/category',
+    path: '/categories',
     component: path.resolve('./src/templates/categories-list-template.js'),
     context: { category: '*' }
   });
 
-  // Posts and pages from markdown
+  // Posts from markdown
   const result = await graphql(`
-    {
-      allMarkdownRemark(
-        filter: { frontmatter: { draft: { ne: true } } }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              template
-            }
-            fields {
-              slug
-            }
-          }
+  {
+    allStrapiArticle {
+      edges {
+        node {
+          slug
         }
       }
     }
+  }
   `);
 
-  const { edges } = result.data.allMarkdownRemark;
+  const { edges } = result.data.allStrapiArticle;
 
   edges.forEach((edge) => {
-    if (get(edge, 'node.frontmatter.template') === 'page') {
-      createPage({
-        path: edge.node.fields.slug,
-        component: path.resolve('./src/templates/page-template.js'),
-        context: { slug: edge.node.fields.slug }
-      });
-    } else if (get(edge, 'node.frontmatter.template') === 'post') {
-      createPage({
-        path: edge.node.fields.slug,
-        component: path.resolve('./src/templates/post-template.js'),
-        context: { slug: edge.node.fields.slug }
-      });
-    }
+    createPage({
+      path: edge.node.slug,
+      component: path.resolve('./src/templates/post-template.js'),
+      context: { slug: edge.node.slug }
+    });
   });
 
   // Feeds
