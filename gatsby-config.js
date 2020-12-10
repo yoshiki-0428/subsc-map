@@ -76,7 +76,7 @@ module.exports = {
               ...edge.node,
               published_at: edge.node.published_at,
               url: site.siteMetadata.siteConfig.url + edge.node.slug,
-              guid: site.siteMetadata.url + edge.node.slug,
+              guid: site.siteMetadata.siteConfig.url + edge.node.slug,
               custom_elements: [{ content: edge.node.content }]
             }))
           ),
