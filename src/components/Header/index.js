@@ -58,7 +58,7 @@ export default class Header extends Component {
                 <Link
                     tw="block inline-block mt-8 text-xl text-base-font font-bold hover:text-primary uppercase"
                     onClick={this.handleLinkClick}
-                    to={'/'}>home
+                    to={'/'}>top
                 </Link>
               </li>
               {sortTotalCount(categories).map((category) => (
@@ -88,14 +88,19 @@ export default class Header extends Component {
           {!headerImage && (<div tw={'mt-4'}/>)}
 
           <Nav>
-            <HomeButton/>
+            <Link
+              tw="block inline-block mt-1 mr-4 text-xl text-base-font hover:text-primary border-b-4 border-white hover:border-b-4 hover:border-primary uppercase"
+              to={'/'}>
+              top
+            </Link>
+
             <HamburgerMenu />
 
             <Content>
               <ContentInner>
                 {sortTotalCount(categories).map((category) => (
                     <Link
-                        tw="block inline-block mt-1 mr-4 text-xl text-base-font font-bold hover:text-primary border-b-4 border-white hover:border-b-4 hover:border-primary uppercase"
+                        tw="block inline-block mt-1 mr-4 text-xl text-base-font hover:text-primary border-b-4 border-white hover:border-b-4 hover:border-primary uppercase"
                         key={category.fieldValue} to={`/categories/${kebabCase(category.fieldValue)}`}>
                       {category.fieldValue}
                     </Link>

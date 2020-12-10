@@ -36,7 +36,7 @@ const SideBar = ({ toc }) => {
         <SPACER>
           <TITLE_H3>カテゴリー</TITLE_H3>
           <HR/>
-          <Tags tags={categories} urlPrefix={'category'}/>
+          <Tags tags={categories} urlPrefix={'categories'}/>
         </SPACER>
       </CARD>
 

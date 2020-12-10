@@ -13,15 +13,18 @@ import {
 import { YYYY_MM_DD } from '../../constants/dateFormat';
 
 const Feed = ({ edges }) => (
-      <div>
+      <div className={'flex flex-wrap'}>
         {edges.map((edge) => (
+          <div className={'md:w-6/12 md:px-4'}>
             <CARD key={edge.node.slug}>
               <SPACER>
                 <TEXT_BASE_CENTER>
                   <time dateTime={format(new Date(edge.node.published_at), YYYY_MM_DD)}>
-                    {format(new Date(edge.node.updated_at), YYYY_MM_DD)}
+                    {format(new Date(edge.node.published_at), YYYY_MM_DD)}
                   </time>
-                  {edge.node.updated_at && (
+                  {format(new Date(edge.node.updated_at), YYYY_MM_DD)
+                    !== format(new Date(edge.node.published_at), YYYY_MM_DD)
+                    && (
                       <> (更新日:
                         <time
                           dateTime={
@@ -30,7 +33,7 @@ const Feed = ({ edges }) => (
                         </time>
                         )
                       </>
-                  )}
+                    )}
                 </TEXT_BASE_CENTER>
                 <TEXT_GATSBY_LINK_H1 to={`/${edge.node.slug}`}>
                   {edge.node.title}
@@ -46,15 +49,16 @@ const Feed = ({ edges }) => (
                     item={{ socialImage: edge.node.socialImage.publicURL }} />
               </Link>
               <SPACER>
-                {/* TODO excerpt */}
-                {/* <TEXT_BASE_CENTER_LINK to={edge.node.slug}> */}
-                {/*  {edge.node.excerpt} */}
-                {/* </TEXT_BASE_CENTER_LINK> */}
+              {/* TODO excerpt */}
+               <TEXT_BASE_CENTER_LINK to={edge.node.slug}>
+                {edge.node.title}
+               </TEXT_BASE_CENTER_LINK>
               </SPACER>
               <SPACER_MINI>
                 <Tags tags={edge.node.tags.map((t) => ({ fieldValue: t.name }))} urlPrefix={'tags'}/>
               </SPACER_MINI>
             </CARD>
+          </div>
         ))}
       </div>
 );
