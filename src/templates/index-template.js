@@ -18,7 +18,7 @@ const IndexTemplate = ({ data, pageContext }) => {
     nextPagePath
   } = pageContext;
 
-  const { edges } = data.allMarkdownRemark;
+  const { edges } = data.allStrapiArticle;
   const pageTitle = currentPage > 0 ? `Posts - Page ${currentPage} - ${siteTitle}` : siteTitle;
 
   const mainPage = (
@@ -39,8 +39,8 @@ const IndexTemplate = ({ data, pageContext }) => {
 
   return (
     <Layout main={mainPage}
-            socialImage={socialMediaCard.image}
             side={side}
+            socialImage={socialMediaCard.image}
             title={pageTitle}
             description={siteSubtitle} top/>
   );
@@ -48,35 +48,38 @@ const IndexTemplate = ({ data, pageContext }) => {
 
 export const query = graphql`
   query IndexTemplate($postsLimit: Int!, $postsOffset: Int!) {
-    allMarkdownRemark(
+    allStrapiArticle
+    (
         limit: $postsLimit,
         skip: $postsOffset,
-        filter: { frontmatter: { template: { eq: "post" }, draft: { ne: true } } },
-        sort: { order: DESC, fields: [frontmatter___date] }
-      ){
-      group(field: frontmatter___tags) {
+        sort: { fields: updated_at, order: DESC }
+    ) 
+    {
+      group(field: tags___id) {
         fieldValue
         totalCount
       }
       edges {
         node {
-          fields {
-            slug
-            categorySlug
+          title
+          published_at
+          created_at
+          updated_at
+          slug
+          socialImage {
+            publicURL
           }
-          frontmatter {
-            title
-            date
-            updatedDate
-            category
-            socialImage
-            tags
+          category {
+            id
+            name
           }
-          excerpt(truncate: true)
+          tags {
+            id
+            name
+          }
         }
       }
     }
-    
   }
 `;
 

@@ -15,43 +15,44 @@ import { YYYY_MM_DD } from '../../constants/dateFormat';
 const Feed = ({ edges }) => (
       <div>
         {edges.map((edge) => (
-            <CARD key={edge.node.fields.slug}>
+            <CARD key={edge.node.slug}>
               <SPACER>
                 <TEXT_BASE_CENTER>
-                  <time dateTime={format(new Date(edge.node.frontmatter.date), YYYY_MM_DD)}>
-                    {format(new Date(edge.node.frontmatter.date), YYYY_MM_DD)}
+                  <time dateTime={format(new Date(edge.node.published_at), YYYY_MM_DD)}>
+                    {format(new Date(edge.node.updated_at), YYYY_MM_DD)}
                   </time>
-                  {edge.node.frontmatter.updatedDate && (
+                  {edge.node.updated_at && (
                       <> (更新日:
                         <time
                           dateTime={
-                            format(new Date(edge.node.frontmatter.updatedDate), YYYY_MM_DD)}>
-                          {format(new Date(edge.node.frontmatter.updatedDate), YYYY_MM_DD)}
+                            format(new Date(edge.node.updated_at), YYYY_MM_DD)}>
+                          {format(new Date(edge.node.updated_at), YYYY_MM_DD)}
                         </time>
                         )
                       </>
                   )}
                 </TEXT_BASE_CENTER>
-                <TEXT_GATSBY_LINK_H1 to={edge.node.fields.slug}>
-                  {edge.node.frontmatter.title}
+                <TEXT_GATSBY_LINK_H1 to={edge.node.slug}>
+                  {edge.node.title}
                 </TEXT_GATSBY_LINK_H1>
 
-                <TEXT_GATSBY_LINK to={edge.node.fields.categorySlug}>
-                  {edge.node.frontmatter.category}
+                <TEXT_GATSBY_LINK to={`/categories/${edge.node.category.id}`}>
+                  {edge.node.category.name}
                 </TEXT_GATSBY_LINK>
               </SPACER>
-              <Link to={edge.node.fields.slug}>
+              <Link to={edge.node.slug}>
                 <ImageWrap
                     size={'normal'}
-                    item={{ socialImage: edge.node.frontmatter.socialImage }} />
+                    item={{ socialImage: edge.node.socialImage.publicURL }} />
               </Link>
               <SPACER>
-                <TEXT_BASE_CENTER_LINK to={edge.node.fields.slug}>
-                  {edge.node.excerpt}
-                </TEXT_BASE_CENTER_LINK>
+                {/* TODO excerpt */}
+                {/* <TEXT_BASE_CENTER_LINK to={edge.node.slug}> */}
+                {/*  {edge.node.excerpt} */}
+                {/* </TEXT_BASE_CENTER_LINK> */}
               </SPACER>
               <SPACER_MINI>
-                <Tags tags={edge.node.frontmatter.tags.map((t) => ({ fieldValue: t }))} urlPrefix={'tags'}/>
+                <Tags tags={edge.node.tags.map((t) => ({ fieldValue: t.name }))} urlPrefix={'tags'}/>
               </SPACER_MINI>
             </CARD>
         ))}

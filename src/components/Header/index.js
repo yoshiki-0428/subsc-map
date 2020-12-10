@@ -66,7 +66,7 @@ export default class Header extends Component {
                     <Link
                       tw="block inline-block mt-8 text-xl text-base-font font-bold hover:text-primary uppercase"
                       onClick={this.handleLinkClick}
-                      to={`/category/${kebabCase(category.fieldValue)}`}>{category.fieldValue}
+                      to={`/categories/${kebabCase(category.fieldValue)}`}>{category.fieldValue}
                   </Link></li>
               ))}
             </ul>
@@ -96,7 +96,7 @@ export default class Header extends Component {
                 {sortTotalCount(categories).map((category) => (
                     <Link
                         tw="block inline-block mt-1 mr-4 text-xl text-base-font font-bold hover:text-primary border-b-4 border-white hover:border-b-4 hover:border-primary uppercase"
-                        key={category.fieldValue} to={`/category/${kebabCase(category.fieldValue)}`}>
+                        key={category.fieldValue} to={`/categories/${kebabCase(category.fieldValue)}`}>
                       {category.fieldValue}
                     </Link>
                 ))}

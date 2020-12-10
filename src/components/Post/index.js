@@ -57,7 +57,7 @@ const Post = ({ post }) => {
           </TEXT_BASE_CENTER>
 
           <TITLE_H1>{title}</TITLE_H1>
-          <TEXT_GATSBY_LINK to={`/category/${kebabCase(category)}`}>{category}</TEXT_GATSBY_LINK>
+          <TEXT_GATSBY_LINK to={`/categories/${kebabCase(category)}`}>{category}</TEXT_GATSBY_LINK>
         </SPACER>
       </CARD>
       <ImageWrap item={{ socialImage }} size={'normal'} />
