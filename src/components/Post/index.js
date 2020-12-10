@@ -63,7 +63,7 @@ const Post = ({ post }) => {
               {date}
             </time>
             {updatedDate && (
-                <>(更新日:
+                <> (更新日:
                     <time dateTime={updatedDate}>
                       {updatedDate}
                     </time>

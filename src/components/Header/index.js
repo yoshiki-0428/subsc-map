@@ -88,16 +88,17 @@ export default class Header extends Component {
           {!headerImage && (<div tw={'mt-4'}/>)}
 
           <Nav>
-            <Link
-              tw="block inline-block mt-1 mr-4 text-xl text-base-font hover:text-primary border-b-4 border-white hover:border-b-4 hover:border-primary uppercase"
-              to={'/'}>
-              top
-            </Link>
-
-            <HamburgerMenu />
+            <div className={'pb-3'}>
+              <HamburgerMenu />
+            </div>
 
             <Content>
               <ContentInner>
+                <Link
+                  tw="block inline-block mt-1 mr-4 text-xl text-base-font hover:text-primary border-b-4 border-white hover:border-b-4 hover:border-primary uppercase"
+                  to={'/'}>
+                  top
+                </Link>
                 {sortTotalCount(categories).map((category) => (
                     <Link
                         tw="block inline-block mt-1 mr-4 text-xl text-base-font hover:text-primary border-b-4 border-white hover:border-b-4 hover:border-primary uppercase"
