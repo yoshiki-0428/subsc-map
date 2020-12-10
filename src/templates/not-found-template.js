@@ -8,7 +8,7 @@ const NotFoundTemplate = () => {
   const { title, subtitle } = useSiteMetadata();
 
   const mainPage = (
-      <Page title="NOT FOUND" content={<p>You just hit a route that doesn&#39;t exist... the sadness.</p>}/>
+      <Page title="NOT FOUND" content={<p>404 Not Found お探しのページは見つまりませんでした。</p>}/>
   );
 
   const side = <Sidebar/>;

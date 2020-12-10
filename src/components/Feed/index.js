@@ -32,15 +32,15 @@ const Feed = ({ edges }) => (
                       </>
                   )}
                 </TEXT_BASE_CENTER>
-                <TEXT_GATSBY_LINK_H1 to={edge.node.slug}>
+                <TEXT_GATSBY_LINK_H1 to={`/${edge.node.slug}`}>
                   {edge.node.title}
                 </TEXT_GATSBY_LINK_H1>
 
-                <TEXT_GATSBY_LINK to={`/categories/${edge.node.category.id}`}>
+                <TEXT_GATSBY_LINK to={`/categories/${edge.node.category.name}`}>
                   {edge.node.category.name}
                 </TEXT_GATSBY_LINK>
               </SPACER>
-              <Link to={edge.node.slug}>
+              <Link to={`/${edge.node.slug}`}>
                 <ImageWrap
                     size={'normal'}
                     item={{ socialImage: edge.node.socialImage.publicURL }} />

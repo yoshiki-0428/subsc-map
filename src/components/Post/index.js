@@ -73,7 +73,7 @@ const Post = ({ post }) => {
           </TEXT_BASE_CENTER>
 
           <TITLE_H1>{title}</TITLE_H1>
-          <TEXT_GATSBY_LINK to={`/categories/${category.id}`}>{category.name}</TEXT_GATSBY_LINK>
+          <TEXT_GATSBY_LINK to={`/categories/${category.name}`}>{category.name}</TEXT_GATSBY_LINK>
         </SPACER>
       </CARD>
       <ImageWrap item={{ socialImage: socialImage.publicURL }} size={'normal'} />

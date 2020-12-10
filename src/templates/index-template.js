@@ -55,7 +55,7 @@ export const query = graphql`
           sort: { fields: updated_at, order: DESC }
       )
       {
-          group(field: tags___id) {
+          group(field: tags___name) {
               fieldValue
               totalCount
           }

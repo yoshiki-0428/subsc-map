@@ -9,7 +9,7 @@ module.exports = async (graphql, actions) => {
   const result = await graphql(`
     {
       allStrapiArticle {
-        group(field: tags___id) {
+        group(field: tags___name) {
           fieldValue
           totalCount
         }
