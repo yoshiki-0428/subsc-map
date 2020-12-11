@@ -27,6 +27,12 @@ const createPages = async ({ graphql, actions }) => {
     context: { category: '*' }
   });
 
+  // Search
+  createPage({
+    path: '/search',
+    component: path.resolve('./src/templates/search-template.js'),
+  });
+
   // Posts from markdown
   const result = await graphql(`
   {

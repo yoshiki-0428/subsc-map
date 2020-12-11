@@ -16,6 +16,7 @@
   "author": "Yoshiki Ohashi <rrrtcdish2@gmail.com>",
   "dependencies": {
     "algoliasearch": "^4.0.0",
+    "fuse.js": "^6.4.3",
     "gatsby": "2.25.1",
     "gatsby-cli": "^2.8.29",
     "gatsby-link": "^2.3.2",
@@ -37,6 +38,7 @@
     "gatsby-plugin-sharp": "^2.5.4",
     "gatsby-plugin-sitemap": "^2.4.7",
     "gatsby-plugin-twitter": "^2.3.10",
+    "gatsby-query-params": "^1.2.1",
     "gatsby-remark-autolink-headers": "^2.2.1",
     "gatsby-remark-copy-linked-files": "^2.6.0",
     "gatsby-remark-embed-youtube": "0.0.7",
