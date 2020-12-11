@@ -13,7 +13,9 @@ const SearchBox: React.FC = ({ q = '' }) => {
   };
 
   const onChangeInput = (e) => {
-    setWord(String(e.target.value));
+    if (e.target.value) {
+      setWord(String(e.target.value));
+    }
   };
 
   return (
