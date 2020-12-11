@@ -6,6 +6,7 @@ import { useAllMarkdownRemarkForPopularList, useSiteMetadata, useCategoriesList 
 import ImageWrap from '../Image/ImageWrap';
 import { SPACER, TEXT_GATSBY_LINK_H3 } from '../Tailwind';
 import Header from '../Header';
+import Footer from '../Footer';
 
 const Layout = ({
   main,
@@ -28,7 +29,7 @@ const Layout = ({
   const Body = tw.div`w-11/12 grid grid-cols-12 lg:gap-10 gap-6 sm:pt-10 py-10 mx-auto`;
   const Article = tw.div`lg:col-span-8 col-span-12`;
   const Side = tw.div`lg:col-span-4 col-span-12`;
-  const Footer = tw.div`col-span-12`;
+  // const Footer = tw.div`col-span-12`;
 
   return (
     <Div>
@@ -42,9 +43,7 @@ const Layout = ({
         </Body>
       </Main>
 
-      <Footer>
-        <div tw="text-base text-base-font ml-2 mb-2">{copyright}</div>
-      </Footer>
+      <Footer />
       <Helmet>
         <html lang="ja" />
         <title>{title}</title>
