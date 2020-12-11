@@ -81,10 +81,10 @@ const Post = ({ post }) => {
           <div className={'text-md text-center font-semibold'}>この記事で紹介しているサブスク</div>
           <div className={'flex flex-wrap justify-center'}>
             {subscs && subscs.length > 0 && subscs.map((s) => (
-              <div className={'shadow-md m-2 p-2 rounded'}>
+              <div className={'shadow-md m-2 pb-2 rounded'}>
                 <a href={`https://review.subsc.cc/subscs/${s.id}`} target={'_blank'}>
-                  <img src={s.socialImage.publicURL} className={'w-32 h-20'}/>
-                  <p className={'text-xs text-center'}>{s.name}</p>
+                  <img src={s.socialImage.publicURL} className={'w-32 h-20 rounded-t'}/>
+                  <p className={'text-xs text-center mt-1'}>{s.name}</p>
                 </a>
               </div>
             ))}
