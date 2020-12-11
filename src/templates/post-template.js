@@ -42,6 +42,9 @@ export const query = graphql`
           subscs {
               id
               name
+              socialImage {
+                  publicURL
+              }
           }
           socialImage {
               publicURL

@@ -3,17 +3,19 @@ import Disqus from 'gatsby-plugin-disqus';
 import { format } from 'date-fns';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
+import { Link } from 'gatsby';
 import Tags from '../Tags';
 import { ShareSns } from '../ShareSns/ShareSns';
 import { useAllMarkdownRemarkForPopularList, useSiteMetadata, useTagsList } from '../../hooks';
 import ImageWrap from '../Image/ImageWrap';
 import InstantView from '../InstantView';
 import {
-  CARD, HR, SPACER, TEXT_BASE_CENTER, TEXT_GATSBY_LINK, TITLE_H1, TITLE_H3
+  CARD, HR, SPACER, TEXT_BASE_CENTER, TEXT_GATSBY_LINK, TITLE_H1, TITLE_H2, TITLE_H3
 } from '../Tailwind';
 import 'twin.macro';
 import Iframely from '../Iframely';
 import { YYYY_MM_DD } from '../../constants/dateFormat';
+
 
 // Tag Listから自分以外のタグで関連するURLを抽出
 const RelatedArticles = ({ tags, slug }) => {
@@ -45,10 +47,10 @@ const RelatedArticles = ({ tags, slug }) => {
 const Post = ({ post }) => {
   const { id, content, slug } = post;
   const {
-    title, socialImage, category, tags
+    title, socialImage, category, tags, subscs
   } = post;
   const { url, disqusShortname } = useSiteMetadata();
-  const date = format(new Date(post.published_at), YYYY_MM_DD);
+  const publishedAt = format(new Date(post.published_at), YYYY_MM_DD);
   const updatedDate = post.updated_at
     ? format(new Date(post.updated_at), YYYY_MM_DD)
     : null;
@@ -59,8 +61,8 @@ const Post = ({ post }) => {
       <CARD mb>
         <SPACER>
           <TEXT_BASE_CENTER>
-            <time dateTime={date}>
-              {date}
+            <time dateTime={publishedAt}>
+              {publishedAt}
             </time>
             {updatedDate && (
                 <> (更新日:
@@ -75,8 +77,22 @@ const Post = ({ post }) => {
           <TITLE_H1>{title}</TITLE_H1>
           <TEXT_GATSBY_LINK to={`/categories/${category.name}`}>{category.name}</TEXT_GATSBY_LINK>
         </SPACER>
+        <SPACER>
+          <div className={'text-md text-center font-semibold'}>この記事で紹介しているサブスク</div>
+          <div className={'flex flex-wrap justify-center'}>
+            {subscs && subscs.length > 0 && subscs.map((s) => (
+              <div className={'shadow-md m-2 p-2 rounded'}>
+                <a href={`https://review.subsc.cc/subscs/${s.id}`} target={'_blank'}>
+                  <img src={s.socialImage.publicURL} className={'w-32 h-20'}/>
+                  <p className={'text-xs text-center'}>{s.name}</p>
+                </a>
+              </div>
+            ))}
+          </div>
+        </SPACER>
       </CARD>
-      <ImageWrap item={{ socialImage: socialImage.publicURL }} size={'normal'} />
+      {/* <ImageWrap item={{ socialImage: socialImage.publicURL }} size={'small'} /> */}
+
       <CARD top>
         <SPACER>
           <ShareSns articleUrl={url + slug} articleTitle={title} />
@@ -84,20 +100,21 @@ const Post = ({ post }) => {
             <ReactMarkdown plugins={[gfm]} className={'content'} source={content}/>
           </div>
           <Tags tags={tags.map((tag) => ({ fieldValue: tag.name }))} urlPrefix={'tags'} />
+          <TEXT_BASE_CENTER>この記事が面白い、参考になったと思ったらシェアをよろしくお願いします👋</TEXT_BASE_CENTER>
           <ShareSns articleUrl={url + slug} articleTitle={title} />
         </SPACER>
       </CARD>
 
       {disqusShortname
-          && <CARD>
-            <SPACER>
-              <Disqus
-                  identifier={id}
-                  title={title}
-                  url={url + slug}
-              />
-            </SPACER>
-          </CARD>
+        && <CARD>
+          <SPACER>
+            <Disqus
+                identifier={id}
+                title={title}
+                url={url + slug}
+            />
+          </SPACER>
+        </CARD>
       }
       <RelatedArticles tags={tags} slug={slug}/>
     </div>
