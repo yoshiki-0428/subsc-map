@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { navigate } from 'gatsby';
 
 const SearchBox: React.FC = ({ q = '' }) => {
-  const [word, setWord] = useState(q);
+  const [word, setWord] = useState(q || '');
 
   const onKeyDownEnter = (e) => {
     if (e.key === 'Enter') {
@@ -13,9 +13,7 @@ const SearchBox: React.FC = ({ q = '' }) => {
   };
 
   const onChangeInput = (e) => {
-    if (e.target.value) {
-      setWord(String(e.target.value));
-    }
+    setWord(String(e.target.value));
   };
 
   return (
