@@ -1,13 +1,12 @@
 siteConfig:
-  disqusShortname: subsc-map
+  disqusShortname: subsc BLOG
   socialMediaCard:
     image: "https://ucarecdn.com/e8330a2a-dc99-4587-92e6-5b69129440d6/"
   copyright: © 2020 Subsc Map All rights reserved.
   author:
     name: サブスクマスター
     photo: https://ucarecdn.com/6aed5af7-cb03-4d2e-a01f-f6db846f9795/-/preview/100x100/
-    bio: サブスクを使い始めて早5年。世の中にあるほとんどのサブスクを試して毎月不要なものを取捨選択をしている。本当に必要なサブスクサービスをこのブログを通して発信していきます！結局最強はAmazon
-      PrimeとNetflix。これさえあれば人生のQoLは上がります。
+    bio: ↑はアイコンにする予定、ここの紹介文何がいいだろうか
     contacts:
       telegram: ""
       youtube: ""
@@ -26,14 +25,14 @@ siteConfig:
       email: rrrtcdish2+subsc@gmail.com
       linkedin: ""
   headerImage: https://ucarecdn.com/98b8def5-4e65-4d03-a16e-9fc82b7f7d3f/-/resize/400x/
-  url: https://subsc-map.com
+  url: https://subsc.cc
   topContents:
-    - url: /posts/subsc-music-5-list
-    - url: /posts/subsc-online-programming
-    - url: /posts/subsc-car-sharing-all
+    - url: subsc-online-programming
+    - url: subsc-online-programming
+    - url: subsc-online-programming
   pathPrefix: /
   subtitle: 本当に必要だったサブスクサービスをあなたに
-  title: サブスクマップ
+  title: みんなのサブスク ブログ
   postsPerPage: 10
   popularView:
     googleAnalyticsStartDate: 60daysAgo
