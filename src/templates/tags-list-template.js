@@ -21,7 +21,7 @@ const TagsListTemplate = ({ data, pageContext }) => {
   const side = <Sidebar/>;
 
   return (
-    <Layout main={mainPage} side={side} title={`Tags - ${title}`} description={subtitle} />
+    <Layout main={mainPage} side={side} title={`タグ | ${title}`} description={subtitle} />
   );
 };
 

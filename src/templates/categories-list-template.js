@@ -21,7 +21,7 @@ const CategoriesListTemplate = ({ data, pageContext }) => {
   const side = <Sidebar/>;
 
   return (
-    <Layout main={mainPage} side={side} title={`Categories - ${title}`} description={subtitle}/>
+    <Layout main={mainPage} side={side} title={`カテゴリ | ${title}`} description={subtitle}/>
   );
 };
 
