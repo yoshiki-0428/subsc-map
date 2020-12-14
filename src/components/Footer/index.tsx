@@ -48,13 +48,11 @@ const FooterNav: React.FC<Props> = (props: Props) => (
       {props.list
       && props.list.map((value, i) => (
         <li key={i} className={'my-1'}>
-          <Link to={value.to}>
-            {!value.to.indexOf('http') ? (
-              <a target="_blank">{value.name}</a>
-            ) : (
-              value.name
-            )}
-          </Link>
+          {!value.to.indexOf('http') ? (
+            <a target="_blank" href={value.to}>{value.name}</a>
+          ) : (
+            <Link to={value.to}>{value.name}</Link>
+          )}
         </li>
       ))}
     </ul>

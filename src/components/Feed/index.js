@@ -15,8 +15,8 @@ import { YYYY_MM_DD } from '../../constants/dateFormat';
 const Feed = ({ edges }) => (
       <div className={'flex flex-wrap'}>
         {edges.map((edge) => (
-          <div className={'md:w-6/12 md:px-4'}>
-            <CARD key={edge.node.slug}>
+          <div className={'md:w-6/12 md:px-4'} key={edge.node.slug}>
+            <CARD>
               <SPACER>
                 <TEXT_BASE_CENTER>
                   <time dateTime={format(new Date(edge.node.published_at), YYYY_MM_DD)}>
@@ -44,9 +44,7 @@ const Feed = ({ edges }) => (
                 </TEXT_GATSBY_LINK>
               </SPACER>
               <Link to={`/${edge.node.slug}`}>
-                <ImageWrap
-                    size={'normal'}
-                    item={{ socialImage: edge.node.socialImage.publicURL }} />
+                <ImageWrap item={{ socialImage: edge.node.socialImage.publicURL }} />
               </Link>
               <SPACER>
               {/* TODO excerpt */}
