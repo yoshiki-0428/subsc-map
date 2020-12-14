@@ -47,10 +47,9 @@ const Feed = ({ edges }) => (
                 <ImageWrap item={{ socialImage: edge.node.socialImage.publicURL }} />
               </Link>
               <SPACER>
-              {/* TODO excerpt */}
-               <TEXT_BASE_CENTER_LINK to={edge.node.slug}>
-                {edge.node.title}
-               </TEXT_BASE_CENTER_LINK>
+                <TEXT_BASE_CENTER_LINK to={edge.node.slug}>
+                  {edge.node.excerpt ? edge.node.excerpt : edge.node.title }
+                </TEXT_BASE_CENTER_LINK>
               </SPACER>
               <SPACER_MINI>
                 <Tags tags={edge.node.tags.map((t) => ({ fieldValue: t.name }))} urlPrefix={'tags'}/>

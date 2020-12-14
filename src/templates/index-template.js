@@ -62,6 +62,7 @@ export const query = graphql`
           edges {
               node {
                   title
+                  excerpt
                   published_at
                   created_at
                   updated_at
