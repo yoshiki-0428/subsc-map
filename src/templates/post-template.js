@@ -8,13 +8,11 @@ import 'twin.macro';
 
 const PostTemplate = ({ data }) => {
   const { title, subtitle } = useSiteMetadata();
-  // TODO excerpt
-  const { excerpt, title: postTitle, socialImage } = data.strapiArticle;
+  const { title: postTitle, socialImage } = data.strapiArticle;
 
   const metaDescription = subtitle;
 
   const main = <Post post={data.strapiArticle} />;
-  // const toc = <div className={'toc'} dangerouslySetInnerHTML={{ __html: data.markdownRemark.tableOfContents }}/>;
   const side = <Sidebar />;
   return (
     <Layout main={main}
