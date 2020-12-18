@@ -5,7 +5,7 @@ siteConfig:
   copyright: © 2020 Subsc Map All rights reserved.
   author:
     name: みんなのサブスク運営
-    photo: https://res.cloudinary.com/dzaa4buiw/image/upload/v1607869423/_e0d27a1b5b.png
+    photo: https://res.cloudinary.com/dzaa4buiw/image/upload/v1607916746/_e0d27a1b5b.ico
     bio: みんなのサブスク運営をしています。「本当に必要だったサブスク」を読者に届けるために記事を執筆。Twitterアカウントも運営していますのでよければフォローお願いします。
     contacts:
       telegram: ""
@@ -16,9 +16,9 @@ siteConfig:
       weibo: ""
       codepen: ""
       rss: /rss.xml
-      feedly: https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fsubsc-map.com%2Frss.xml
+      feedly: https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fsubsc.cc%2Frss.xml
       instagram: ""
-      twitter: ""
+      twitter: "@minna_subsc"
       line: ""
       gitlab: ""
       vkontakte: ""
@@ -27,9 +27,9 @@ siteConfig:
   headerImage: https://res.cloudinary.com/dzaa4buiw/image/upload/v1607868533/3_862c7ce5fb.png
   url: https://subsc.cc
   topContents:
-    - url: subsc-online-programming
-    - url: subsc-online-programming
-    - url: subsc-online-programming
+    - url: ''
+    - url: ''
+    - url: ''
   pathPrefix: /
   subtitle: 本当に必要だったサブスクサービスをあなたに
   title: みんなのサブスク ブログ
@@ -41,8 +41,8 @@ siteConfig:
     googleAnalyticsFiltersUrl: /posts
     googleAnalyticsPageSize: 5
   menu:
-    - label: ""
-      path: ""
+    - label: "レビューサイト"
+      path: "https://review.subsc.cc"
 siteDesign:
   white: "#FFFFFF"
   primary: "#5BC0EB"
