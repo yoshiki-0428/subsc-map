@@ -1,4 +1,5 @@
 import { useStaticQuery, graphql } from 'gatsby';
+import getOgpImage from '../utils/get-ogp-image';
 
 const useAllMarkdownRemarkForPopularList = (paths) => {
   const { allStrapiArticle } = useStaticQuery(
@@ -20,7 +21,7 @@ const useAllMarkdownRemarkForPopularList = (paths) => {
     .filter((a) => paths.includes(a.slug))
     .map((a) => ({
       title: a.title,
-      socialImage: a.socialImage.publicURL,
+      socialImage: a.socialImage ? a.socialImage.publicURL : getOgpImage(a.title),
       slug: a.slug
     }));
 
