@@ -5,11 +5,11 @@ import Post from '../components/Post';
 import { useSiteMetadata } from '../hooks';
 import Sidebar from '../components/Sidebar';
 import 'twin.macro';
+import getOgpImage from '../utils/get-ogp-image';
 
 const PostTemplate = ({ data }) => {
   const { title, subtitle } = useSiteMetadata();
   const { title: postTitle, socialImage } = data.strapiArticle;
-
   const metaDescription = subtitle;
 
   const main = <Post post={data.strapiArticle} />;
@@ -19,7 +19,9 @@ const PostTemplate = ({ data }) => {
             side={side}
             title={`${postTitle} - ${title}`}
             description={metaDescription}
-            socialImage={socialImage} />
+            socialImage={socialImage
+              ? socialImage.publicURL
+              : getOgpImage(postTitle)} />
   );
 };
 

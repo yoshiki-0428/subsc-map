@@ -17,7 +17,7 @@ const Layout = ({
   top = false
 }) => {
   const {
-    author, copyright, topContents, headerImage
+    author, topContents, headerImage
   } = useSiteMetadata();
   const siteTitle = useSiteMetadata().title;
   const categories = useCategoriesList();
@@ -29,7 +29,6 @@ const Layout = ({
   const Body = tw.div`w-11/12 grid grid-cols-12 lg:gap-10 gap-6 sm:pt-10 py-10 mx-auto`;
   const Article = tw.div`lg:col-span-8 col-span-12`;
   const Side = tw.div`lg:col-span-4 col-span-12`;
-  // const Footer = tw.div`col-span-12`;
 
   return (
     <Div>

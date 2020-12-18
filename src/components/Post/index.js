@@ -3,11 +3,9 @@ import Disqus from 'gatsby-plugin-disqus';
 import { format } from 'date-fns';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
-import { Link } from 'gatsby';
 import Tags from '../Tags';
 import { ShareSns } from '../ShareSns/ShareSns';
 import { useAllMarkdownRemarkForPopularList, useSiteMetadata, useTagsList } from '../../hooks';
-import ImageWrap from '../Image/ImageWrap';
 import InstantView from '../InstantView';
 import {
   CARD, HR, SPACER, TEXT_BASE_CENTER, TEXT_GATSBY_LINK, TITLE_H1, TITLE_H2, TITLE_H3
@@ -47,7 +45,7 @@ const RelatedArticles = ({ tags, slug }) => {
 const Post = ({ post }) => {
   const { id, content, slug } = post;
   const {
-    title, socialImage, category, tags, subscs
+    title, category, tags, subscs
   } = post;
   const { url, disqusShortname } = useSiteMetadata();
   const publishedAt = format(new Date(post.published_at), YYYY_MM_DD);
@@ -83,7 +81,7 @@ const Post = ({ post }) => {
             {subscs && subscs.length > 0 && subscs.map((s, i) => (
               <div className={'shadow-md m-2 pb-2 rounded'} key={i}>
                 <a href={`https://review.subsc.cc/subscs/${s.id}`} target={'_blank'}>
-                  <img src={s.socialImage.publicURL} className={'w-32 h-20 rounded-t'}/>
+                  <img src={s.socialImage ? s.socialImage.publicURL : '/media/empty.jpg'} className={'w-32 h-20 rounded-t'}/>
                   <p className={'text-xs text-center mt-1'}>{s.name}</p>
                 </a>
               </div>
