@@ -22,7 +22,6 @@ const Layout = ({
   const siteTitle = useSiteMetadata().title;
   const categories = useCategoriesList();
   const items = useAllMarkdownRemarkForPopularList(topContents.map((top) => top.url));
-  const metaImage = socialImage != null ? socialImage : author.photo;
 
   const Div = tw.div`flex flex-col min-h-screen bg-base-back`;
   const Main = tw.div`container mx-auto`;
@@ -58,21 +57,20 @@ const Layout = ({
         <link rel="preconnect dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect dns-prefetch" href="https://b.st-hatena.com" />
 
-        <link rel="preload" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
-              integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8=" crossOrigin="anonymous"/>
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"/>
 
-        <meta name="description" content={description} />
-        <meta property="og:site_name" content={siteTitle} />
         <meta property="og:title" content={title} />
-        <meta property="og:url" content={typeof window === 'object' ? window.location.href : ''} />
-        <meta property="og:type" content={top ? 'website' : 'article'} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={metaImage} />
-        <meta name="twitter:card" content="summary" />
+        <meta property="og:type" content={top ? 'website' : 'article'} />
+        <meta property="og:url" content={typeof window === 'object' ? window.location.href : ''} />
+        <meta property="og:image" content={socialImage} />
+        <meta property="og:site_name" content={siteTitle} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content={'@minna_subsc'} />
+        <meta name="twitter:url" content={typeof window === 'object' ? window.location.href : ''} />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={metaImage} />
+        <meta name="twitter:image" content={socialImage} />
       </Helmet>
     </Div>
   );
