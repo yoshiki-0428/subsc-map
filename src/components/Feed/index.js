@@ -11,6 +11,7 @@ import {
   TEXT_GATSBY_LINK_H1,
 } from '../Tailwind';
 import { YYYY_MM_DD } from '../../constants/dateFormat';
+import getOgpImage from '../../utils/get-ogp-image';
 
 const Feed = ({ edges }) => (
       <div className={'flex flex-wrap'}>
@@ -44,7 +45,11 @@ const Feed = ({ edges }) => (
                 </TEXT_GATSBY_LINK>
               </SPACER>
               <Link to={`/${edge.node.slug}`}>
-                <ImageWrap item={{ socialImage: edge.node.socialImage.publicURL }} />
+                <ImageWrap item={{
+                  socialImage: edge.node.socialImage
+                    ? edge.node.socialImage.publicURL
+                    : getOgpImage(edge.node.title)
+                }} />
               </Link>
               <SPACER>
                 <TEXT_BASE_CENTER_LINK to={edge.node.slug}>
