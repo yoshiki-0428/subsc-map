@@ -45,6 +45,7 @@ const Layout = ({
       <Helmet>
         <html lang="ja" />
         <title>{title}</title>
+        <meta name="description" content={description} />
 
         <link rel="preconnect dns-prefetch" href="https://ucarecdn.com" crossOrigin/>
         <link rel="preconnect dns-prefetch" href="https://ad.doubleclick.net" />
