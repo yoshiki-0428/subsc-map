@@ -1,36 +1,44 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import Fuse from 'fuse.js';
+import { useQueryParam } from 'gatsby-query-params';
 import { useSiteMetadata } from '../hooks';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
 import Feed from '../components/Feed';
 import Page from '../components/Page';
-import Pagination from '../components/Pagination';
+import SearchBox from '../components/SearchBox';
 
-const IndexTemplate = ({ data, pageContext }) => {
+const SEARCH_OPTIONS = {
+  threshold: 0.3,
+  caseSensitive: false,
+  keys: [
+    'node.title',
+    'node.content',
+    'node.published_at',
+    'node.created_at',
+    'node.updated_at',
+    'node.slug',
+    'node.category.name',
+    'node.tags.name'
+  ]
+};
+
+const SearchTemplate = ({ data }) => {
   const { title: siteTitle, subtitle: siteSubtitle, socialMediaCard } = useSiteMetadata();
 
-  const {
-    currentPage,
-    hasNextPage,
-    hasPrevPage,
-    prevPagePath,
-    nextPagePath
-  } = pageContext;
-
   const { edges } = data.allStrapiArticle;
-  const pageTitle = currentPage > 0 ? `Posts - Page ${currentPage} - ${siteTitle}` : siteTitle;
+  const q = useQueryParam('q', '');
+  const fuse = new Fuse(edges, SEARCH_OPTIONS);
+  const result = q ? fuse.search(q) : edges.map((e) => ({ item: e }));
 
   const mainPage = (
     <Page content={
       <div>
-        <Feed edges={edges} />
-        <Pagination
-          prevPagePath={prevPagePath}
-          nextPagePath={nextPagePath}
-          hasPrevPage={hasPrevPage}
-          hasNextPage={hasNextPage}
-        />
+        <div className={'flex justify-center sm:justify-start mb-6'}>
+          <SearchBox q={q} />
+        </div>
+        <Feed edges={result.map((r) => r.item)} />
       </div>
     }/>
   );
@@ -41,17 +49,15 @@ const IndexTemplate = ({ data, pageContext }) => {
     <Layout main={mainPage}
             side={side}
             socialImage={socialMediaCard.image}
-            title={pageTitle}
+            title={siteTitle}
             description={siteSubtitle} top/>
   );
 };
 
 export const query = graphql`
-  query IndexTemplate($postsLimit: Int!, $postsOffset: Int!) {
+  query SearchTemplate {
       allStrapiArticle
       (
-          limit: $postsLimit,
-          skip: $postsOffset,
           sort: { fields: updated_at, order: DESC }
       )
       {
@@ -62,7 +68,7 @@ export const query = graphql`
           edges {
               node {
                   title
-                  excerpt
+                  content
                   published_at
                   created_at
                   updated_at
@@ -84,4 +90,4 @@ export const query = graphql`
   }
 `;
 
-export default IndexTemplate;
+export default SearchTemplate;

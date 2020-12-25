@@ -1,40 +1,56 @@
 import React from 'react';
 import Disqus from 'gatsby-plugin-disqus';
 import { format } from 'date-fns';
-import { kebabCase } from 'lodash/string';
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
 import Tags from '../Tags';
 import { ShareSns } from '../ShareSns/ShareSns';
 import { useAllMarkdownRemarkForPopularList, useSiteMetadata, useTagsList } from '../../hooks';
-import ImageWrap from '../Image/ImageWrap';
 import InstantView from '../InstantView';
 import {
-  CARD, HR, SPACER, TEXT_BASE_CENTER, TEXT_GATSBY_LINK, TITLE_H1, TITLE_H3
+  CARD, HR, SPACER, TEXT_BASE_CENTER, TEXT_GATSBY_LINK, TITLE_H1, TITLE_H2, TITLE_H3
 } from '../Tailwind';
 import 'twin.macro';
 import Iframely from '../Iframely';
 import { YYYY_MM_DD } from '../../constants/dateFormat';
 
-const Post = ({ post }) => {
-  const { id, html } = post;
-  const { slug } = post.fields;
-  const {
-    title, socialImage, category, tags
-  } = post.frontmatter;
+
+// Tag Listから自分以外のタグで関連するURLを抽出
+const RelatedArticles = ({ tags, slug }) => {
   const group = useTagsList();
-  // Tag Listから自分以外のタグで関連するURLを抽出
-  const relatedLinks = group.filter((g) => tags.includes(g.fieldValue))
+  const tagIds = tags.map((t) => t.name);
+  const relatedLinks = group.filter((g) => tagIds.includes(g.fieldValue))
     .flatMap((g) => g.edges)
-    .map((edge) => edge.node.fields.slug)
+    .map((edge) => edge.node.slug)
     .filter((url) => url !== slug);
-  const { url, disqusShortname } = useSiteMetadata();
   const relatedArticles = relatedLinks
     ? useAllMarkdownRemarkForPopularList(Array.from(new Set(relatedLinks)))
     : [];
 
-  const convertTags = tags.map((tag) => ({ fieldValue: tag }));
-  const date = format(new Date(post.frontmatter.date), YYYY_MM_DD);
-  const updatedDate = post.frontmatter.updatedDate
-    ? format(new Date(post.frontmatter.updatedDate), YYYY_MM_DD)
+  if (relatedArticles.length === 0) {
+    return null;
+  }
+  return (
+    <CARD>
+      <SPACER>
+        <TITLE_H3>この記事に似ている記事</TITLE_H3>
+        <HR/>
+        <InstantView flex items={relatedArticles} />
+      </SPACER>
+    </CARD>
+  );
+};
+
+
+const Post = ({ post }) => {
+  const { id, content, slug } = post;
+  const {
+    title, category, tags, subscs
+  } = post;
+  const { url, disqusShortname } = useSiteMetadata();
+  const publishedAt = format(new Date(post.published_at), YYYY_MM_DD);
+  const updatedDate = post.updated_at
+    ? format(new Date(post.updated_at), YYYY_MM_DD)
     : null;
 
   return (
@@ -43,11 +59,11 @@ const Post = ({ post }) => {
       <CARD mb>
         <SPACER>
           <TEXT_BASE_CENTER>
-            <time dateTime={date}>
-              {date}
+            <time dateTime={publishedAt}>
+              {publishedAt}
             </time>
             {updatedDate && (
-                <>(更新日:
+                <> (更新日:
                     <time dateTime={updatedDate}>
                       {updatedDate}
                     </time>
@@ -57,42 +73,48 @@ const Post = ({ post }) => {
           </TEXT_BASE_CENTER>
 
           <TITLE_H1>{title}</TITLE_H1>
-          <TEXT_GATSBY_LINK to={`/category/${kebabCase(category)}`}>{category}</TEXT_GATSBY_LINK>
+          <TEXT_GATSBY_LINK to={`/categories/${category.name}`}>{category.name}</TEXT_GATSBY_LINK>
+        </SPACER>
+        <SPACER>
+          <div className={'text-md text-center font-semibold'}>この記事で紹介しているサブスク</div>
+          <div className={'flex flex-wrap justify-center'}>
+            {subscs && subscs.length > 0 && subscs.map((s, i) => (
+              <div className={'shadow-md m-2 pb-2 rounded'} key={i}>
+                <a href={`https://review.subsc.cc/subscs/${s.id}`} target={'_blank'}>
+                  <img src={s.socialImage ? s.socialImage.publicURL : '/media/empty.jpg'} className={'w-32 h-20 rounded-t'}/>
+                  <p className={'text-xs text-center mt-1'}>{s.name}</p>
+                </a>
+              </div>
+            ))}
+          </div>
         </SPACER>
       </CARD>
-      <ImageWrap item={{ socialImage }} size={'normal'} />
+      {/* <ImageWrap item={{ socialImage: socialImage.publicURL }} size={'small'} /> */}
+
       <CARD top>
         <SPACER>
           <ShareSns articleUrl={url + slug} articleTitle={title} />
           <div tw="my-4">
-            <div className={'content'} dangerouslySetInnerHTML={{ __html: html }} />
+            <ReactMarkdown plugins={[gfm]} className={'content'} source={content}/>
           </div>
-          <Tags tags={convertTags} urlPrefix={'tags'} />
+          <Tags tags={tags.map((tag) => ({ fieldValue: tag.name }))} urlPrefix={'tags'} />
+          <TEXT_BASE_CENTER>この記事が面白い、参考になったと思ったらシェアをよろしくお願いします👋</TEXT_BASE_CENTER>
           <ShareSns articleUrl={url + slug} articleTitle={title} />
         </SPACER>
       </CARD>
 
       {disqusShortname
-          && <CARD>
-            <SPACER>
-              <Disqus
-                  identifier={id}
-                  title={title}
-                  url={url + slug}
-              />
-            </SPACER>
-          </CARD>
+        && <CARD>
+          <SPACER>
+            <Disqus
+                identifier={id}
+                title={title}
+                url={url + slug}
+            />
+          </SPACER>
+        </CARD>
       }
-
-      {relatedArticles.length !== 0
-          && <CARD>
-            <SPACER>
-              <TITLE_H3>Related Links</TITLE_H3>
-              <HR/>
-              <InstantView flex items={relatedArticles} />
-            </SPACER>
-          </CARD>
-      }
+      <RelatedArticles tags={tags} slug={slug}/>
     </div>
   );
 };

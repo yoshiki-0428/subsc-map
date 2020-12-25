@@ -8,7 +8,7 @@ import Feed from '../components/Feed';
 
 const TagsListTemplate = ({ data, pageContext }) => {
   const { title, subtitle } = useSiteMetadata();
-  const { edges } = data.allMarkdownRemark;
+  const { edges } = data.allStrapiArticle;
 
   const pageTitle = pageContext.tag === '*' ? '' : `${pageContext.tag}に関する記事一覧`;
   const mainPage = (
@@ -21,39 +21,32 @@ const TagsListTemplate = ({ data, pageContext }) => {
   const side = <Sidebar/>;
 
   return (
-    <Layout main={mainPage} side={side} title={`Tags - ${title}`} description={subtitle} />
+    <Layout main={mainPage} side={side} title={`タグ | ${title}`} description={subtitle} />
   );
 };
 
 export const query = graphql`
 query TagsListTemplate($tag: String!) {
-    allMarkdownRemark(
-        filter: {
-            frontmatter: {
-                template: { eq: "post" },
-                draft: { ne: true },
-                tags: { glob: $tag } }
-        },
-        sort: { order: DESC, fields: [frontmatter___date] }
-    ){
-        group(field: frontmatter___tags) {
-            fieldValue
-            totalCount
-        }
+    allStrapiArticle(filter: {tags: {elemMatch: {id: {}, name: {glob: $tag}}}}, sort: {fields: updated_at, order: DESC}) {
         edges {
             node {
-                fields {
-                    slug
-                    categorySlug
+                title
+                excerpt
+                created_at
+                updated_at
+                published_at
+                slug
+                category {
+                    id
+                    name
                 }
-                frontmatter {
-                    title
-                    date
-                    category
-                    socialImage
-                    tags
+                tags {
+                    id
+                    name
                 }
-                excerpt(truncate: true)
+                socialImage {
+                    publicURL
+                }
             }
         }
     }

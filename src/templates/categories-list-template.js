@@ -8,7 +8,7 @@ import Feed from '../components/Feed';
 
 const CategoriesListTemplate = ({ data, pageContext }) => {
   const { title, subtitle } = useSiteMetadata();
-  const { edges } = data.allMarkdownRemark;
+  const { edges } = data.allStrapiArticle;
 
   const pageTitle = pageContext.category === '*' ? '' : `${pageContext.category}に関する記事一覧`;
   const mainPage = (
@@ -21,37 +21,36 @@ const CategoriesListTemplate = ({ data, pageContext }) => {
   const side = <Sidebar/>;
 
   return (
-    <Layout main={mainPage} side={side} title={`Categories - ${title}`} description={subtitle}/>
+    <Layout main={mainPage} side={side} title={`カテゴリ | ${title}`} description={subtitle}/>
   );
 };
 
 export const query = graphql`
     query CategoriesListTemplate($category: String!) {
-        allMarkdownRemark(
-            filter: { frontmatter: { template: { eq: "post" }, draft: { ne: true }, category: { glob: $category } } },
-            sort: { order: DESC, fields: [frontmatter___date] }
-        ){
-            group(field: frontmatter___tags) {
-                fieldValue
-                totalCount
-            }
+        allStrapiArticle(sort: {fields: updated_at, order: DESC}, filter: {category: {name: {glob: $category}}}) {
             edges {
                 node {
-                    fields {
-                        slug
-                        categorySlug
+                    title
+                    excerpt
+                    created_at
+                    updated_at
+                    published_at
+                    slug
+                    category {
+                        id
+                        name
                     }
-                    frontmatter {
-                        title
-                        date
-                        category
-                        socialImage
-                        tags
+                    tags {
+                        id
+                        name
                     }
-                    excerpt(truncate: true)
+                    socialImage {
+                        publicURL
+                    }
                 }
             }
         }
+
     }
 `;
 

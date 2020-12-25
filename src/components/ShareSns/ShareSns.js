@@ -22,7 +22,6 @@ export const ShareSns = ({ articleUrl, articleTitle }) => {
           <script type="text/javascript" src="//b.st-hatena.com/js/bookmark_button.js" async/>
         </Helmet>
 
-        <TEXT_BASE_CENTER>よろしければシェアをよろしくお願いします👋</TEXT_BASE_CENTER>
         <div tw="flex justify-center">
           <div tw="m-2">
             <a

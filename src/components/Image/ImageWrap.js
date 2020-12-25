@@ -1,24 +1,19 @@
 import React from 'react';
-import tw from 'twin.macro';
-
 import Image from './Image';
 
-const ImageWrap = ({ item, size }) => {
+const ImageWrap = ({ item }) => {
   if (!item.socialImage) {
     return null;
   }
-  const Div = size === 'normal'
-    ? tw.div`relative h-64`
-    : tw.div`relative h-40`;
 
   return (
-      <Div>
+      <div className={'relative'}>
         <Image
           resolutions="small"
           alt={item.alt ? item.alt : ''}
           src={item.socialImage}
         />
-      </Div>
+      </div>
   );
 };
 

@@ -8,10 +8,8 @@ module.exports = async (graphql, actions) => {
 
   const result = await graphql(`
     {
-      allMarkdownRemark(
-        filter: { frontmatter: { template: { eq: "post" }, draft: { ne: true } } }
-      ) {
-        group(field: frontmatter___tags) {
+      allStrapiArticle {
+        group(field: tags___name) {
           fieldValue
           totalCount
         }
@@ -19,9 +17,9 @@ module.exports = async (graphql, actions) => {
     }
   `);
 
-  result.data.allMarkdownRemark.group.forEach((tag) => {
+  result.data.allStrapiArticle.group.forEach((tag) => {
     const numPages = Math.ceil(tag.totalCount / postsPerPage);
-    const tagSlug = `/tags/${kebabCase(tag.fieldValue)}`;
+    const tagSlug = `/tags/${tag.fieldValue}`;
 
     for (let i = 0; i < numPages; i += 1) {
       createPage({

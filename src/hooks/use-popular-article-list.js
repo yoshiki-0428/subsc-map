@@ -1,29 +1,28 @@
 import { useStaticQuery, graphql } from 'gatsby';
+import getOgpImage from '../utils/get-ogp-image';
 
 const useAllMarkdownRemarkForPopularList = (paths) => {
-  const { allMarkdownRemark } = useStaticQuery(
+  const { allStrapiArticle } = useStaticQuery(
     graphql`
-          query AllMarkdownRemarkForPopular {
-              allMarkdownRemark {
-                  nodes {
-                      fields {
-                          slug
-                      }
-                      frontmatter {
-                          title
-                          socialImage
-                      }
+      query AllMarkdownRemarkForPopular {
+          allStrapiArticle {
+              nodes {
+                  slug
+                  title
+                  socialImage {
+                      publicURL
                   }
               }
-          }`
+          }
+      }`
   );
 
-  const list = allMarkdownRemark.nodes
-    .filter((a) => paths.includes(a.fields.slug))
+  const list = allStrapiArticle.nodes
+    .filter((a) => paths.includes(a.slug))
     .map((a) => ({
-      title: a.frontmatter.title,
-      socialImage: a.frontmatter.socialImage,
-      slug: a.fields.slug
+      title: a.title,
+      socialImage: a.socialImage ? a.socialImage.publicURL : getOgpImage(a.title),
+      slug: a.slug
     }));
 
   return list;

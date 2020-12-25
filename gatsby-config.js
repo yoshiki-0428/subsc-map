@@ -1,4 +1,3 @@
-const resolveConfig = require('tailwindcss/resolveConfig');
 const postCssPlugins = require('./postcss-config.js');
 
 const tailwindConfig = require('./tailwind.config.js');
@@ -41,6 +40,14 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-source-strapi',
+      options: {
+        apiURL: process.env.API_URI || 'https://subsc-backend.herokuapp.com',
+        queryLimit: 1000, // Default to 100
+        contentTypes: ['article', 'tag', 'subsc', 'category'],
+      },
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'assets',
@@ -64,35 +71,26 @@ module.exports = {
           }
         `,
         feeds: [{
-          serialize: ({ query: { site, allMarkdownRemark } }) => (
-            allMarkdownRemark.edges.map((edge) => ({
-              ...edge.node.frontmatter,
-              description: edge.node.frontmatter.description,
-              date: edge.node.frontmatter.date,
-              url: site.siteMetadata.siteConfig.url + edge.node.fields.slug,
-              guid: site.siteMetadata.url + edge.node.fields.slug,
-              custom_elements: [{ 'content:encoded': edge.node.html }]
+          serialize: ({ query: { site, allStrapiArticle } }) => (
+            allStrapiArticle.edges.map((edge) => ({
+              ...edge.node,
+              published_at: edge.node.published_at,
+              url: site.siteMetadata.siteConfig.url + edge.node.slug,
+              guid: site.siteMetadata.siteConfig.url + edge.node.slug,
+              custom_elements: [{ content: edge.node.content }]
             }))
           ),
           query: `
               {
-                allMarkdownRemark(
-                  limit: 1000,
-                  sort: { order: DESC, fields: [frontmatter___date] },
-                  filter: { frontmatter: { template: { eq: "post" }, draft: { ne: true } } }
-                ) {
+                allStrapiArticle(sort: {fields: published_at, order: DESC}) {
                   edges {
                     node {
-                      html
-                      fields {
-                        slug
-                      }
-                      frontmatter {
-                        title
-                        date
-                        template
-                        draft
-                      }
+                      content
+                      title
+                      updated_at
+                      published_at
+                      created_at
+                      slug
                     }
                   }
                 }
@@ -162,55 +160,6 @@ module.exports = {
           head: true,
         },
       },
-    },
-    {
-      resolve: 'gatsby-plugin-algolia',
-      options: {
-        appId: config.secretConfig.algoliaAppId,
-        apiKey: process.env['ALGOLIA_ADMIN_KEY'],
-        indexName: config.secretConfig.algoliaIndexName,
-        queries: [
-          {
-            query: `{
-                allMarkdownRemark(
-                  limit: 1000,
-                  sort: { order: DESC, fields: [frontmatter___date] },
-                  filter: { frontmatter: { template: { eq: "post" }, draft: { eq: false } } }
-                ) {
-                  edges {
-                    node {
-                      fields {
-                        slug
-                      }
-                      frontmatter {
-                        title
-                        date(formatString: "MMMM DD, YYYY")
-                        template
-                        category
-                        socialImage
-                        tags
-                      }
-                      excerpt
-                      rawMarkdownBody
-                    }
-                  }
-                }
-              }`,
-            transformer: ({ data }) => data.allMarkdownRemark.edges.flatMap(({ node }) => ({
-              id: node.fields.slug,
-              title: node.frontmatter.title,
-              date: new Date(node.frontmatter.date),
-              template: node.fields.template,
-              category: node.fields.category,
-              socialImage: node.fields.socialImage,
-              tags: node.fields.tags,
-              excerpt: node.excerpt,
-              rawMarkdownBody: node.rawMarkdownBody,
-            })),
-          },
-        ],
-        chunkSize: 10000,
-      }
     },
     {
       resolve: 'gatsby-plugin-disqus',

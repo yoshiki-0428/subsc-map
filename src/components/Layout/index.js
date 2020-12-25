@@ -6,6 +6,7 @@ import { useAllMarkdownRemarkForPopularList, useSiteMetadata, useCategoriesList 
 import ImageWrap from '../Image/ImageWrap';
 import { SPACER, TEXT_GATSBY_LINK_H3 } from '../Tailwind';
 import Header from '../Header';
+import Footer from '../Footer';
 
 const Layout = ({
   main,
@@ -16,19 +17,17 @@ const Layout = ({
   top = false
 }) => {
   const {
-    author, copyright, topContents, headerImage
+    author, topContents, headerImage
   } = useSiteMetadata();
   const siteTitle = useSiteMetadata().title;
   const categories = useCategoriesList();
   const items = useAllMarkdownRemarkForPopularList(topContents.map((top) => top.url));
-  const metaImage = socialImage != null ? socialImage : author.photo;
 
   const Div = tw.div`flex flex-col min-h-screen bg-base-back`;
   const Main = tw.div`container mx-auto`;
   const Body = tw.div`w-11/12 grid grid-cols-12 lg:gap-10 gap-6 sm:pt-10 py-10 mx-auto`;
   const Article = tw.div`lg:col-span-8 col-span-12`;
   const Side = tw.div`lg:col-span-4 col-span-12`;
-  const Footer = tw.div`col-span-12`;
 
   return (
     <Div>
@@ -42,12 +41,11 @@ const Layout = ({
         </Body>
       </Main>
 
-      <Footer>
-        <div tw="text-base text-base-font ml-2 mb-2">{copyright}</div>
-      </Footer>
+      <Footer />
       <Helmet>
         <html lang="ja" />
         <title>{title}</title>
+        <meta name="description" content={description} />
 
         <link rel="preconnect dns-prefetch" href="https://ucarecdn.com" crossOrigin/>
         <link rel="preconnect dns-prefetch" href="https://ad.doubleclick.net" />
@@ -60,21 +58,20 @@ const Layout = ({
         <link rel="preconnect dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect dns-prefetch" href="https://b.st-hatena.com" />
 
-        <link rel="preload" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
-              integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8=" crossOrigin="anonymous"/>
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"/>
 
-        <meta name="description" content={description} />
-        <meta property="og:site_name" content={siteTitle} />
         <meta property="og:title" content={title} />
-        <meta property="og:url" content={typeof window === 'object' ? window.location.href : ''} />
-        <meta property="og:type" content={top ? 'website' : 'article'} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={metaImage} />
-        <meta name="twitter:card" content="summary" />
+        <meta property="og:type" content={top ? 'website' : 'article'} />
+        <meta property="og:url" content={typeof window === 'object' ? window.location.href : ''} />
+        <meta property="og:image" content={socialImage} />
+        <meta property="og:site_name" content={siteTitle} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content={'@minna_subsc'} />
+        <meta name="twitter:url" content={typeof window === 'object' ? window.location.href : ''} />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={metaImage} />
+        <meta name="twitter:image" content={socialImage} />
       </Helmet>
     </Div>
   );

@@ -8,6 +8,7 @@ import {
   CARD, HR, SPACER, TITLE_H3
 } from '../Tailwind';
 import 'twin.macro';
+import SearchBox from '../SearchBox';
 
 const SideBar = ({ toc }) => {
   const popularList = usePopularList();
@@ -34,9 +35,19 @@ const SideBar = ({ toc }) => {
 
       <CARD>
         <SPACER>
+          <TITLE_H3>記事を探す</TITLE_H3>
+          <HR/>
+          <div className={'flex justify-center m-4'}>
+            <SearchBox q={''}/>
+          </div>
+        </SPACER>
+      </CARD>
+
+      <CARD>
+        <SPACER>
           <TITLE_H3>カテゴリー</TITLE_H3>
           <HR/>
-          <Tags tags={categories} urlPrefix={'category'}/>
+          <Tags tags={categories} urlPrefix={'categories'}/>
         </SPACER>
       </CARD>
 

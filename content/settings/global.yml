@@ -1,13 +1,12 @@
 siteConfig:
-  disqusShortname: subsc-map
+  disqusShortname: subsc
   socialMediaCard:
-    image: "https://ucarecdn.com/e8330a2a-dc99-4587-92e6-5b69129440d6/"
+    image: "https://res.cloudinary.com/dzaa4buiw/image/upload/v1608027823/medium_banner_f3182a0e74.png"
   copyright: © 2020 Subsc Map All rights reserved.
   author:
-    name: サブスクマスター
-    photo: https://ucarecdn.com/6aed5af7-cb03-4d2e-a01f-f6db846f9795/-/preview/100x100/
-    bio: サブスクを使い始めて早5年。世の中にあるほとんどのサブスクを試して毎月不要なものを取捨選択をしている。本当に必要なサブスクサービスをこのブログを通して発信していきます！結局最強はAmazon
-      PrimeとNetflix。これさえあれば人生のQoLは上がります。
+    name: みんなのサブスク運営
+    photo: https://res.cloudinary.com/dzaa4buiw/image/upload/v1607916746/_e0d27a1b5b.ico
+    bio: みんなのサブスク運営をしています。「本当に必要だったサブスク」を読者に届けるために記事を執筆。Twitterアカウントも運営していますのでよければフォローお願いします。
     contacts:
       telegram: ""
       youtube: ""
@@ -17,23 +16,23 @@ siteConfig:
       weibo: ""
       codepen: ""
       rss: /rss.xml
-      feedly: https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fsubsc-map.com%2Frss.xml
+      feedly: https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fsubsc.cc%2Frss.xml
       instagram: ""
-      twitter: ""
+      twitter: "@minna_subsc"
       line: ""
       gitlab: ""
       vkontakte: ""
       email: rrrtcdish2+subsc@gmail.com
       linkedin: ""
-  headerImage: https://ucarecdn.com/98b8def5-4e65-4d03-a16e-9fc82b7f7d3f/-/resize/400x/
-  url: https://subsc-map.com
+  headerImage: https://res.cloudinary.com/dzaa4buiw/image/upload/v1607868533/3_862c7ce5fb.png
+  url: https://subsc.cc
   topContents:
-    - url: /posts/subsc-music-5-list
-    - url: /posts/subsc-online-programming
-    - url: /posts/subsc-car-sharing-all
+    - url: ''
+    - url: ''
+    - url: ''
   pathPrefix: /
   subtitle: 本当に必要だったサブスクサービスをあなたに
-  title: サブスクマップ
+  title: みんなのサブスク ブログ
   postsPerPage: 10
   popularView:
     googleAnalyticsStartDate: 60daysAgo
@@ -42,8 +41,8 @@ siteConfig:
     googleAnalyticsFiltersUrl: /posts
     googleAnalyticsPageSize: 5
   menu:
-    - label: ""
-      path: ""
+    - label: "レビューサイト"
+      path: "https://review.subsc.cc"
 siteDesign:
   white: "#FFFFFF"
   primary: "#5BC0EB"

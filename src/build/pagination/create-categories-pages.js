@@ -1,5 +1,4 @@
 module.exports = async (graphql, actions) => {
-  const { kebabCase } = require('lodash/string');
   const config = require('../../../loadYaml.js');
   const path = require('path');
   const { createPage } = actions;
@@ -7,20 +6,18 @@ module.exports = async (graphql, actions) => {
 
   const result = await graphql(`
     {
-      allMarkdownRemark(
-        filter: { frontmatter: { template: { eq: "post" }, draft: { ne: true } } }
-      ) {
-        group(field: frontmatter___category) {
-          fieldValue
+      allStrapiArticle {
+        group(field: category___name) {
           totalCount
+          fieldValue
         }
       }
     }
   `);
 
-  result.data.allMarkdownRemark.group.forEach((category) => {
+  result.data.allStrapiArticle.group.forEach((category) => {
     const numPages = Math.ceil(category.totalCount / postsPerPage);
-    const categorySlug = `/category/${kebabCase(category.fieldValue)}`;
+    const categorySlug = `/categories/${category.fieldValue}`;
 
     for (let i = 0; i < numPages; i += 1) {
       createPage({
