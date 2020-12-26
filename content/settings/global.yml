@@ -1,11 +1,11 @@
 siteConfig:
   disqusShortname: subsc
   socialMediaCard:
-    image: "https://res.cloudinary.com/dzaa4buiw/image/upload/v1608027823/medium_banner_f3182a0e74.png"
+    image: "https://res.cloudinary.com/dzaa4buiw/image/upload/v1608027823/web/medium_banner_f3182a0e74.png"
   copyright: © 2020 Subsc Map All rights reserved.
   author:
     name: みんなのサブスク運営
-    photo: https://res.cloudinary.com/dzaa4buiw/image/upload/v1607916746/_e0d27a1b5b.ico
+    photo: https://res.cloudinary.com/dzaa4buiw/image/upload/web/v1607916746/_e0d27a1b5b.ico
     bio: みんなのサブスク運営をしています。「本当に必要だったサブスク」を読者に届けるために記事を執筆。Twitterアカウントも運営していますのでよければフォローお願いします。
     contacts:
       telegram: ""
@@ -24,7 +24,7 @@ siteConfig:
       vkontakte: ""
       email: rrrtcdish2+subsc@gmail.com
       linkedin: ""
-  headerImage: https://res.cloudinary.com/dzaa4buiw/image/upload/v1607868533/3_862c7ce5fb.png
+  headerImage: https://res.cloudinary.com/dzaa4buiw/image/upload/v1607868533/web/3_862c7ce5fb.png
   url: https://subsc.cc
   topContents:
     - url: ''
