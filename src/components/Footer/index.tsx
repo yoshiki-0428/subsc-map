@@ -17,10 +17,9 @@ const FOOTER_NAV_LIST: { title: string; list: DisplayList[] }[] = [
   {
     title: 'みんなのサブスク',
     list: [
-      { name: 'ブログ', to: 'https://review.subsc.cc' },
-      { name: 'レビューサイト', to: 'https://subsc.cc' },
-      { name: 'カテゴリ一覧', to: '/categories' },
-      { name: 'タグ一覧', to: '/tags' },
+      { name: 'ブログ', to: 'https://subsc.cc' },
+      { name: 'レビューサイト', to: 'https://review.subsc.cc' },
+      { name: '検索をする', to: '/search' },
     ],
   },
   {
