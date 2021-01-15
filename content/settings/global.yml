@@ -25,14 +25,14 @@ siteConfig:
       email: rrrtcdish2+subsc@gmail.com
       linkedin: ""
   headerImage: https://res.cloudinary.com/dzaa4buiw/image/upload/v1607868533/web/3_862c7ce5fb.png
-  url: https://subsc.cc
+  url: https://subsc.cc/
   topContents:
     - url: ''
     - url: ''
     - url: ''
   pathPrefix: /
   subtitle: 本当に必要だったサブスクサービスをあなたに
-  title: みんなのサブスク ブログ
+  title: みんなのサブスクブログ
   postsPerPage: 10
   popularView:
     googleAnalyticsStartDate: 60daysAgo
