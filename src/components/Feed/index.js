@@ -8,7 +8,7 @@ import {
   SPACER, SPACER_MINI,
   TEXT_BASE_CENTER, TEXT_BASE_CENTER_LINK,
   TEXT_GATSBY_LINK,
-  TEXT_GATSBY_LINK_H1,
+  TEXT_GATSBY_LINK_H1, TEXT_GATSBY_LINK_H2,
 } from '../Tailwind';
 import { YYYY_MM_DD } from '../../constants/dateFormat';
 import getOgpImage from '../../utils/get-ogp-image';
@@ -23,7 +23,7 @@ const Feed = ({ edges }) => (
                   <time dateTime={format(new Date(edge.node.published_at), YYYY_MM_DD)}>
                     {format(new Date(edge.node.published_at), YYYY_MM_DD)}
                   </time>
-                  {format(new Date(edge.node.updated_at), YYYY_MM_DD)
+                  {edge.node.updated_at && format(new Date(edge.node.updated_at), YYYY_MM_DD)
                     !== format(new Date(edge.node.published_at), YYYY_MM_DD)
                     && (
                       <> (更新日:
@@ -36,15 +36,15 @@ const Feed = ({ edges }) => (
                       </>
                     )}
                 </TEXT_BASE_CENTER>
-                <TEXT_GATSBY_LINK_H1 to={`/${edge.node.slug}`}>
+                <TEXT_GATSBY_LINK_H2 to={`/posts/${edge.node.slug}`}>
                   {edge.node.title}
-                </TEXT_GATSBY_LINK_H1>
+                </TEXT_GATSBY_LINK_H2>
 
                 <TEXT_GATSBY_LINK to={`/categories/${edge.node.category.name}`}>
                   {edge.node.category.name}
                 </TEXT_GATSBY_LINK>
               </SPACER>
-              <Link to={`/${edge.node.slug}`}>
+              <Link to={`/posts/${edge.node.slug}`}>
                 <ImageWrap item={{
                   socialImage: edge.node.socialImage
                     ? edge.node.socialImage.publicURL
@@ -52,7 +52,7 @@ const Feed = ({ edges }) => (
                 }} />
               </Link>
               <SPACER>
-                <TEXT_BASE_CENTER_LINK to={edge.node.slug}>
+                <TEXT_BASE_CENTER_LINK to={`/posts/${edge.node.slug}`}>
                   {edge.node.excerpt ? edge.node.excerpt : edge.node.title }
                 </TEXT_BASE_CENTER_LINK>
               </SPACER>

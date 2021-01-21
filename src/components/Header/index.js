@@ -3,7 +3,30 @@ import { Link } from 'gatsby';
 import tw from 'twin.macro';
 import { kebabCase } from 'lodash/string';
 import { orderBy } from 'lodash/collection';
-import SearchComponent from '../SearchBox';
+import SearchBox from '../SearchBox';
+
+const CategoryNavBar = ({ top = true, categories }) => {
+  const CategoryNav = tw.div`sm:block hidden inline-block mt-1 mr-4
+                             text-lg text-base-font hover:text-primary uppercase
+                             border-b-2 hover:border-b-2 hover:border-primary`;
+  const categoriesElement = categories.map((category, i) => (
+    <CategoryNav key={i} className='border-base-back'>
+      <Link key={category.fieldValue} to={`/categories/${category.fieldValue}`}>
+        {category.fieldValue}
+      </Link>
+    </CategoryNav>
+  ));
+  return (
+    <>
+      {top && (
+        <CategoryNav className={window && window.location.pathname === '/' ? 'border-base-font' : 'border-base-back'}>
+          <Link to={'/'}>top</Link>
+        </CategoryNav>
+      )}
+      {categoriesElement}
+    </>
+  );
+};
 
 export default class Header extends Component {
   state = {
@@ -20,12 +43,9 @@ export default class Header extends Component {
       categories
     } = this.props;
 
-    const StickyDiv = tw.div`lg:sticky lg:top-0 lg:z-50 bg-white shadow-lg`;
-    const Nav = tw.nav`flex items-center justify-end flex-wrap container mx-auto px-8`;
+    const Div = tw.div`bg-base-back`;
     const SvgWrap = tw.div`flex items-center flex-shrink-0 text-black mr-4 cursor-pointer`;
     const Svg = tw.svg`fill-current w-4 h-4 text-base-font hover:text-primary`;
-    const Content = tw.div`hidden md:w-1/2 md:flex-grow md:flex md:items-center`;
-    const ContentInner = tw.div`text-base flex-grow flex-grow`;
 
     const sortTotalCount = (items) => orderBy(items, ['totalCount', 'fieldValue'], ['desc']).slice(0, 8);
     const HamburgerMenu = () => (<div>
@@ -66,41 +86,28 @@ export default class Header extends Component {
     </div>);
 
     return (
-        <StickyDiv>
-          {headerImage && (
-            <span tw="flex justify-between">
-              <div/>
+        <Div>
+          <div className="flex justify-between sm:mx-auto max-w-screen-lg mt-6 mb-2 sm:mx-2 mx-1">
+            <div className="flex items-center sm:w-8/12 w-6/12">
               <Link to={'/'}>
-                <img tw="p-4 pb-0 h-20 md:h-24 lg:h-24 xl:h-24" src={headerImage} alt={'headerImage'} />
+                <img className="cursor-pointer sm:mr-2 mr-1 sm:w-4/12 w-10/12" src={headerImage} alt={'headerImage'} />
               </Link>
-              <div/>
-            </span>
-          )}
-          {!headerImage && (<div tw={'mt-4'}/>)}
-
-          <Nav>
-            <div className={'pb-4'}>
+            </div>
+            <div className={'sm:block hidden mt-2'}>
+              <SearchBox />
+            </div>
+            <div className={'pb-2 sm:hidden'}>
               <HamburgerMenu />
             </div>
-
-            <Content>
-              <ContentInner>
-                <Link
-                  tw="block inline-block mt-1 mr-4 text-xl text-base-font hover:text-primary border-b-4 border-white hover:border-b-4 hover:border-primary uppercase"
-                  to={'/'}>
-                  top
-                </Link>
-                {sortTotalCount(categories).map((category) => (
-                    <Link
-                        tw="block inline-block mt-1 mr-4 text-xl text-base-font hover:text-primary border-b-4 border-white hover:border-b-4 hover:border-primary uppercase"
-                        key={category.fieldValue} to={`/categories/${kebabCase(category.fieldValue)}`}>
-                      {category.fieldValue}
-                    </Link>
-                ))}
-              </ContentInner>
-            </Content>
-          </Nav>
-        </StickyDiv>
+          </div>
+          {categories && categories.length > 0 && (
+            <div
+              className={'sm:flex hidden justify-between mx-auto max-w-screen-lg'}
+            >
+              <CategoryNavBar categories={categories} top />
+            </div>
+          )}
+        </Div>
     );
   }
 }

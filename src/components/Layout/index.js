@@ -17,13 +17,13 @@ const Layout = ({
   top = false
 }) => {
   const {
-    author, topContents, headerImage
+    topContents, headerImage
   } = useSiteMetadata();
   const siteTitle = useSiteMetadata().title;
   const categories = useCategoriesList();
   const items = useAllMarkdownRemarkForPopularList(topContents.map((top) => top.url));
 
-  const Div = tw.div`flex flex-col min-h-screen bg-base-back`;
+  const Div = tw.div`flex flex-col min-h-screen bg-white`;
   const Main = tw.div`container mx-auto`;
   const Body = tw.div`w-11/12 grid grid-cols-12 lg:gap-10 gap-6 sm:pt-10 py-10 mx-auto`;
   const Article = tw.div`lg:col-span-8 col-span-12`;
@@ -83,14 +83,14 @@ const TopContents = ({ items }) => {
   return (
       <>
         {items.slice(0, 3).map((item) => (
-            <TopContent key={item.slug}>
+            <TopContent key={`/posts/${item.slug}`}>
               <div tw="rounded-tr rounded-tl overflow-hidden bg-white">
-                <Link to={item.slug}>
+                <Link to={`/posts/${item.slug}`}>
                   <ImageWrap item={{ socialImage: item.socialImage, alt: '' }}/>
                 </Link>
               </div>
               <SPACER>
-                <TEXT_GATSBY_LINK_H3 to={item.slug}>{item.title}</TEXT_GATSBY_LINK_H3>
+                <TEXT_GATSBY_LINK_H3 to={`/posts/${item.slug}`}>{item.title}</TEXT_GATSBY_LINK_H3>
               </SPACER>
             </TopContent>
         ))}

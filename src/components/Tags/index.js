@@ -10,13 +10,14 @@ const Tags = ({ tags, urlPrefix }) => {
   if (!tags) {
     return null;
   }
-  const Tag = tw.span`inline-block bg-base-gray-light rounded-full px-3 py-1 text-sm font-semibold text-base-font mr-2 mb-2 hover:text-accent`;
+  const Tag = tw.span`inline-block bg-base-back rounded-full m-1 mr-2 mb-2
+   px-3 py-1 text-xs text-base-font cursor-pointer`;
 
   return (
       <>
         {sortTotalCount(tags).map((tag) => (
             <Link key={tag.fieldValue} to={`/${urlPrefix}/${kebabCase(tag.fieldValue)}`}>
-              <Tag>#{tag.fieldValue}</Tag>
+              <Tag>{tag.fieldValue}</Tag>
             </Link>
         ))}
       </>

@@ -24,6 +24,7 @@ const useAllMarkdownRemarkForPopularList = (paths) => {
       socialImage: a.socialImage ? a.socialImage.publicURL : getOgpImage(a.title),
       slug: a.slug
     }));
+  console.log(list);
 
   return list;
 };

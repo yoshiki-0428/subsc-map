@@ -42,7 +42,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-strapi',
       options: {
-        apiURL: process.env.API_URI || 'https://subsc-backend.herokuapp.com',
+        apiURL: process.env.API_URI || 'https://api-subsc-cc.herokuapp.com',
         queryLimit: 1000, // Default to 100
         contentTypes: ['article', 'tag', 'subsc', 'category'],
       },
@@ -75,8 +75,8 @@ module.exports = {
             allStrapiArticle.edges.map((edge) => ({
               ...edge.node,
               published_at: edge.node.published_at,
-              url: site.siteMetadata.siteConfig.url + edge.node.slug,
-              guid: site.siteMetadata.siteConfig.url + edge.node.slug,
+              url: `${site.siteMetadata.siteConfig.url}posts/${edge.node.slug}`,
+              guid: `${site.siteMetadata.siteConfig.url}posts/${edge.node.slug}`,
               custom_elements: [{ content: edge.node.content }]
             }))
           ),

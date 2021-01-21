@@ -32,33 +32,21 @@ const SideBar = ({ toc }) => {
           </SPACER>
         </CARD>
       )}
+      <SPACER>
+        <div className={'pl-2 my-4 text-xl font-bold border-l-4 border-primary'}>記事を探す</div>
+        <div className={'flex justify-center m-4 ml-0'}>
+          <SearchBox q={''}/>
+        </div>
+      </SPACER>
 
-      <CARD>
-        <SPACER>
-          <TITLE_H3>記事を探す</TITLE_H3>
-          <HR/>
-          <div className={'flex justify-center m-4'}>
-            <SearchBox q={''}/>
-          </div>
-        </SPACER>
-      </CARD>
-
-      <CARD>
-        <SPACER>
-          <TITLE_H3>カテゴリー</TITLE_H3>
-          <HR/>
-          <Tags tags={categories} urlPrefix={'categories'}/>
-        </SPACER>
-      </CARD>
-
-      <CARD>
-        <SPACER>
-          <TITLE_H3>タグ一覧</TITLE_H3>
-          <HR/>
-          <Tags tags={tags} urlPrefix={'tags'}/>
-        </SPACER>
-
-      </CARD>
+      <SPACER>
+        <div className={'pl-2 my-4 text-xl font-bold border-l-4 border-primary'}>カテゴリ一</div>
+        <Tags tags={categories} urlPrefix={'categories'}/>
+      </SPACER>
+      <SPACER>
+        <div className={'pl-2 my-4 text-xl font-bold border-l-4 border-primary'}>タグ一覧</div>
+        <Tags tags={tags} urlPrefix={'tags'}/>
+      </SPACER>
 
       {toc && (
           <div tw="hidden lg:block sticky top-1/5">

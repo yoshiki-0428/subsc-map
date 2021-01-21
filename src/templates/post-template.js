@@ -14,13 +14,14 @@ const PostTemplate = ({ data }) => {
 
   const main = <Post post={data.strapiArticle} />;
   const side = <Sidebar />;
+  const origin = window && window.location.origin;
   return (
     <Layout main={main}
             side={side}
             title={`${postTitle} - ${title}`}
             description={metaDescription}
             socialImage={socialImage
-              ? socialImage.publicURL
+              ? origin + socialImage.publicURL
               : getOgpImage(postTitle)} />
   );
 };
