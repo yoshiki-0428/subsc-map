@@ -17,7 +17,7 @@ const SearchBox: React.FC = ({ q = '' }) => {
   };
 
   return (
-    <div className="w-56 h-10 p-1 ml-4 bg-white border rounded flex relative">
+    <div className="w-56 h-10 p-1 bg-white border rounded flex relative">
       <input
         type="text"
         name="search"

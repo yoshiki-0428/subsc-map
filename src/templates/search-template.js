@@ -28,6 +28,7 @@ const SearchTemplate = ({ data }) => {
   const { title: siteTitle, subtitle: siteSubtitle, socialMediaCard } = useSiteMetadata();
 
   const { edges } = data.allStrapiArticle;
+  console.log(edges);
   const q = useQueryParam('q', '');
   const fuse = new Fuse(edges, SEARCH_OPTIONS);
   const result = q ? fuse.search(q) : edges.map((e) => ({ item: e }));
@@ -35,9 +36,20 @@ const SearchTemplate = ({ data }) => {
   const mainPage = (
     <Page content={
       <div>
-        <div className={'flex justify-center sm:justify-start mb-6'}>
+        <div className={'flex justify-center ml-0 mb-6'}>
           <SearchBox q={q} />
         </div>
+        {result.length === 0 && (
+          <>
+            <div className='flex justify-center'>
+              <img src={'/media/no_result.svg'} className={'w-32'}/>
+            </div>
+            <div className='my-4 text-center'>
+              記事が見つかりませんでした。
+            </div>
+            <Feed edges={edges} />
+          </>
+        )}
         <Feed edges={result.map((r) => r.item)} />
       </div>
     }/>
@@ -50,7 +62,7 @@ const SearchTemplate = ({ data }) => {
             side={side}
             socialImage={socialMediaCard.image}
             title={siteTitle}
-            description={siteSubtitle} top/>
+            description={siteSubtitle} />
   );
 };
 

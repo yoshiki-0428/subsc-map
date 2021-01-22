@@ -17,10 +17,6 @@ const useAllMarkdownRemarkForPopularList = (paths) => {
       }`
   );
 
-  console.log(paths);
-  console.log(allStrapiArticle.nodes
-    .filter((a) => paths.includes(a.slug)), allStrapiArticle.nodes);
-
   const list = allStrapiArticle.nodes
     .filter((a) => paths.includes(a.slug))
     .map((a) => ({
@@ -28,7 +24,6 @@ const useAllMarkdownRemarkForPopularList = (paths) => {
       socialImage: a.socialImage ? a.socialImage.publicURL : getOgpImage(a.title),
       slug: a.slug
     }));
-  console.log(list);
 
   return list;
 };
