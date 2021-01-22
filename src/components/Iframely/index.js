@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 
 function Iframely() {
   useEffect(() => {
-    if (window && window.iframely) {
+    if (typeof window === 'object' && window.iframely) {
       window.iframely.load();
     }
   }, []);

@@ -19,7 +19,7 @@ const CategoryNavBar = ({ top = true, categories }) => {
   return (
     <>
       {top && (
-        <CategoryNav className={window && window.location.pathname === '/' ? 'border-base-font' : 'border-base-back'}>
+        <CategoryNav className={typeof window === 'object' && window.location.pathname === '/' ? 'border-base-font' : 'border-base-back'}>
           <Link to={'/'}>top</Link>
         </CategoryNav>
       )}
