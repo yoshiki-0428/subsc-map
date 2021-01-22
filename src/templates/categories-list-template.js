@@ -10,7 +10,7 @@ const CategoriesListTemplate = ({ data, pageContext }) => {
   const { title, subtitle } = useSiteMetadata();
   const { edges } = data.allStrapiArticle;
 
-  const pageTitle = pageContext.category === '*' ? '' : `${pageContext.category}に関する記事一覧`;
+  const pageTitle = pageContext.category === '*' ? '' : `${pageContext.category} に関する記事`;
   const mainPage = (
     <Page title={pageTitle} content={(
       <Feed edges={edges} />

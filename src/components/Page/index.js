@@ -1,6 +1,5 @@
 import React from 'react';
 import tw from 'twin.macro';
-import { HR, TITLE_H1 } from '../Tailwind';
 
 const Page = ({ title, content, footerContent }) => {
   const Body = tw.div`text-base flex justify-center`;
@@ -8,8 +7,7 @@ const Page = ({ title, content, footerContent }) => {
       <>
         {title && (
           <>
-            <TITLE_H1>{title}</TITLE_H1>
-            <HR/>
+            <div className='ml-4 mb-8 pl-4 sm:text-2xl text-xl font-bold border-l-4 border-primary'>{title}</div>
           </>
         )}
 

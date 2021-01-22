@@ -17,7 +17,7 @@ const usePopularList = () => {
     `
   );
 
-  const pathList = allIPopularPage.nodes.map((p) => p.path);
+  const pathList = allIPopularPage.nodes.map((p) => p.path.replace('/posts/', ''));
   return useAllMarkdownRemarkForPopularList(pathList);
 };
 

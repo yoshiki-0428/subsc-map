@@ -1,5 +1,5 @@
 siteConfig:
-  disqusShortname: subsc
+  disqusShortname: minnanosabusukuburogu
   socialMediaCard:
     image: "https://res.cloudinary.com/dzaa4buiw/image/upload/v1608027823/web/medium_banner_f3182a0e74.png"
   copyright: © 2020 Subsc Map All rights reserved.
@@ -27,9 +27,9 @@ siteConfig:
   headerImage: https://res.cloudinary.com/dzaa4buiw/image/upload/v1607868533/web/3_862c7ce5fb.png
   url: https://subsc.cc/
   topContents:
-    - url: ''
-    - url: ''
-    - url: ''
+    - url: 'subsc-coffee-cafe'
+    - url: 'subsc-bagbest'
+    - url: 'subsc-art-2020'
   pathPrefix: /
   subtitle: 本当に必要だったサブスクサービスをあなたに
   title: みんなのサブスクブログ

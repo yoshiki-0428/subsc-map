@@ -50,7 +50,7 @@ const createPages = async ({ graphql, actions }) => {
 
   edges.forEach((edge) => {
     createPage({
-      path: edge.node.slug,
+      path: `posts/${edge.node.slug}`,
       component: path.resolve('./src/templates/post-template.js'),
       context: { slug: edge.node.slug }
     });

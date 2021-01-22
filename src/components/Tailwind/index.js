@@ -9,11 +9,15 @@ export const TITLE_H3 = tw.h3`text-base text-base-font text-center font-bold`;
 export const TEXT_GATSBY_LINK_H1 = ({ to, children }) => <div tw="text-center">
   <Link tw="text-2xl font-bold text-base-font hover:underline" to={to}>{children}</Link>
 </div>;
+export const TEXT_GATSBY_LINK_H2 = ({ to, children }) => <div tw="text-center">
+  <Link tw="text-xl font-bold text-base-font hover:underline" to={to}>{children}</Link>
+</div>;
 export const TEXT_GATSBY_LINK_H3 = ({ to, children }) => <div tw="text-center">
   <Link tw="text-base font-bold text-base-font hover:underline" to={to}>{children}</Link>
 </div>;
 export const TEXT_BASE = tw.div`text-base-font text-base`;
 export const TEXT_BASE_CENTER = tw.div`text-base-font text-base text-center`;
+export const TEXT_BASE_LEFT = tw.div`text-base-font text-base text-left`;
 export const TEXT_BASE_CENTER_LINK = ({ to, children }) => <div tw="text-base-font text-base text-center cursor-pointer">
   <Link tw="text-base" to={to}>{children}</Link>
 </div>;
@@ -28,9 +32,9 @@ export const BUTTON_CENTER = ({ to, children }) => <div tw="p-4 text-center">
 export const CARD = ({ mb = false, top = false, children }) => {
   const Inner = mb ? tw.div`mb-0` : tw.div`mb-10`;
   const Card = mb
-    ? tw.div`bg-white rounded-tr rounded-tl shadow-md`
-    : top ? tw.div`bg-white rounded-br rounded-bl shadow-md`
-      : tw.div`bg-white rounded shadow-md`;
+    ? tw.div`bg-base-back rounded-tr rounded-tl`
+    : top ? tw.div`bg-white rounded-br rounded-bl`
+      : tw.div`bg-base-back rounded`;
   return (
       <Inner>
         <Card>{children}</Card>

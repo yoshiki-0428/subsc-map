@@ -13,6 +13,7 @@ import {
 import 'twin.macro';
 import Iframely from '../Iframely';
 import { YYYY_MM_DD } from '../../constants/dateFormat';
+import ImageWrap from '../Image/ImageWrap';
 
 
 // Tag Listから自分以外のタグで関連するURLを抽出
@@ -31,19 +32,18 @@ const RelatedArticles = ({ tags, slug }) => {
     return null;
   }
   return (
-    <CARD>
-      <SPACER>
-        <TITLE_H3>この記事に似ている記事</TITLE_H3>
-        <HR/>
-        <InstantView flex items={relatedArticles} />
-      </SPACER>
-    </CARD>
+    <SPACER>
+      <TITLE_H3>この記事に関連している記事</TITLE_H3>
+      <InstantView flex items={relatedArticles} />
+    </SPACER>
   );
 };
 
 
 const Post = ({ post }) => {
-  const { id, content, slug } = post;
+  const {
+    id, content, slug, socialImage
+  } = post;
   const {
     title, category, tags, subscs
   } = post;
@@ -56,7 +56,6 @@ const Post = ({ post }) => {
   return (
     <div>
       <Iframely/>
-      <CARD mb>
         <SPACER>
           <TEXT_BASE_CENTER>
             <time dateTime={publishedAt}>
@@ -76,20 +75,21 @@ const Post = ({ post }) => {
           <TEXT_GATSBY_LINK to={`/categories/${category.name}`}>{category.name}</TEXT_GATSBY_LINK>
         </SPACER>
         <SPACER>
-          <div className={'text-md text-center font-semibold'}>この記事で紹介しているサブスク</div>
+          <div className={'text-md text-center'}>この記事で紹介しているサブスク</div>
           <div className={'flex flex-wrap justify-center'}>
             {subscs && subscs.length > 0 && subscs.map((s, i) => (
-              <div className={'shadow-md m-2 pb-2 rounded'} key={i}>
+              <div className={'bg-base-back m-2 pb-2 rounded'} key={i}>
                 <a href={`https://review.subsc.cc/subscs/${s.id}`} target={'_blank'}>
                   <img src={s.socialImage ? s.socialImage.publicURL : '/media/empty.jpg'} className={'w-32 h-20 rounded-t'}/>
-                  <p className={'text-xs text-center mt-1'}>{s.name}</p>
+                  <div className={'text-xs w-32 truncate text-center mt-1'}>{s.name}</div>
                 </a>
               </div>
             ))}
           </div>
         </SPACER>
-      </CARD>
-      {/* <ImageWrap item={{ socialImage: socialImage.publicURL }} size={'small'} /> */}
+      <div className='flex justify-center'>
+        <ImageWrap item={{ socialImage: socialImage.publicURL }} size={'small'} />
+      </div>
 
       <CARD top>
         <SPACER>
@@ -97,9 +97,6 @@ const Post = ({ post }) => {
           <div tw="my-4">
             <ReactMarkdown plugins={[gfm]} className={'content'} source={content}/>
           </div>
-          <Tags tags={tags.map((tag) => ({ fieldValue: tag.name }))} urlPrefix={'tags'} />
-          <TEXT_BASE_CENTER>この記事が面白い、参考になったと思ったらシェアをよろしくお願いします👋</TEXT_BASE_CENTER>
-          <ShareSns articleUrl={url + slug} articleTitle={title} />
         </SPACER>
       </CARD>
 
@@ -114,6 +111,12 @@ const Post = ({ post }) => {
           </SPACER>
         </CARD>
       }
+      <div className='my-4'>
+        <TEXT_BASE_CENTER>この記事が面白い、参考になったと思ったらシェアをよろしくお願いします👋</TEXT_BASE_CENTER>
+      </div>
+      <div className='my-2'>
+        <ShareSns articleUrl={url + slug} articleTitle={title} />
+      </div>
       <RelatedArticles tags={tags} slug={slug}/>
     </div>
   );

@@ -24,41 +24,26 @@ const SideBar = ({ toc }) => {
       </CARD>
 
       {popularList.length > 0 && (
-        <CARD>
-          <SPACER>
-            <TITLE_H3>よく読まれている記事</TITLE_H3>
-            <HR/>
-            <InstantView items={popularList}/>
-          </SPACER>
-        </CARD>
+        <div className='py-2'>
+          <div className={'pl-2 my-4 text-xl font-bold border-l-4 border-primary'}>よく読まれている記事</div>
+          <InstantView items={popularList}/>
+        </div>
       )}
+      <div className='py-2'>
+        <div className={'pl-2 my-4 text-xl font-bold border-l-4 border-primary'}>記事を探す</div>
+        <div className={'flex justify-left ml-0'}>
+          <SearchBox q={''}/>
+        </div>
+      </div>
 
-      <CARD>
-        <SPACER>
-          <TITLE_H3>記事を探す</TITLE_H3>
-          <HR/>
-          <div className={'flex justify-center m-4'}>
-            <SearchBox q={''}/>
-          </div>
-        </SPACER>
-      </CARD>
-
-      <CARD>
-        <SPACER>
-          <TITLE_H3>カテゴリー</TITLE_H3>
-          <HR/>
-          <Tags tags={categories} urlPrefix={'categories'}/>
-        </SPACER>
-      </CARD>
-
-      <CARD>
-        <SPACER>
-          <TITLE_H3>タグ一覧</TITLE_H3>
-          <HR/>
-          <Tags tags={tags} urlPrefix={'tags'}/>
-        </SPACER>
-
-      </CARD>
+      <div className='py-2'>
+        <div className={'pl-2 my-4 text-xl font-bold border-l-4 border-primary'}>カテゴリ一</div>
+        <Tags tags={categories} urlPrefix={'categories'}/>
+      </div>
+      <div className='py-2'>
+        <div className={'pl-2 my-4 text-xl font-bold border-l-4 border-primary'}>タグ一覧</div>
+        <Tags tags={tags} urlPrefix={'tags'}/>
+      </div>
 
       {toc && (
           <div tw="hidden lg:block sticky top-1/5">

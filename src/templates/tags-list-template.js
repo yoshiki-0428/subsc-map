@@ -10,7 +10,7 @@ const TagsListTemplate = ({ data, pageContext }) => {
   const { title, subtitle } = useSiteMetadata();
   const { edges } = data.allStrapiArticle;
 
-  const pageTitle = pageContext.tag === '*' ? '' : `${pageContext.tag}に関する記事一覧`;
+  const pageTitle = pageContext.tag === '*' ? '' : `${pageContext.tag} に関する記事`;
   const mainPage = (
       <Page title={pageTitle} content={(
         <Feed edges={edges} />
