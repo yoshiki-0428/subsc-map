@@ -17,6 +17,10 @@ const useAllMarkdownRemarkForPopularList = (paths) => {
       }`
   );
 
+  console.log(paths);
+  console.log(allStrapiArticle.nodes
+    .filter((a) => paths.includes(a.slug)), allStrapiArticle.nodes);
+
   const list = allStrapiArticle.nodes
     .filter((a) => paths.includes(a.slug))
     .map((a) => ({
