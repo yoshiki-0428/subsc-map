@@ -14,7 +14,7 @@ const PostTemplate = ({ data }) => {
 
   const main = <Post post={data.strapiArticle} />;
   const side = <Sidebar />;
-  const origin = typeof window === 'object' && window.location.origin;
+  const origin = typeof window === 'object' ? window.location.origin : '';
   return (
     <Layout main={main}
             side={side}
