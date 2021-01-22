@@ -9,7 +9,7 @@ const CategoryNavBar = ({ top = true, categories }) => {
   const CategoryNav = tw.div`sm:block hidden inline-block mt-1 mr-4
                              text-lg text-base-font hover:text-primary uppercase
                              border-b-2 hover:border-b-2 hover:border-primary`;
-  const categoriesElement = categories.map((category, i) => (
+  const categoriesElement = categories.slice(0, 12).map((category, i) => (
     <CategoryNav key={i} className='border-base-back'>
       <Link key={category.fieldValue} to={`/categories/${category.fieldValue}`}>
         {category.fieldValue}

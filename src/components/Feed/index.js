@@ -8,15 +8,15 @@ import {
   SPACER, SPACER_MINI,
   TEXT_BASE_CENTER, TEXT_BASE_CENTER_LINK,
   TEXT_GATSBY_LINK,
-  TEXT_GATSBY_LINK_H1, TEXT_GATSBY_LINK_H2,
+  TEXT_GATSBY_LINK_H2,
 } from '../Tailwind';
 import { YYYY_MM_DD } from '../../constants/dateFormat';
 import getOgpImage from '../../utils/get-ogp-image';
 
 const Feed = ({ edges }) => (
-      <div className={'flex flex-wrap'}>
+      <div className={'grid grid-cols-12 lg:gap-10 gap-6'}>
         {edges.map((edge) => (
-          <div className={'md:w-6/12 md:px-4'} key={edge.node.slug}>
+          <div className={'lg:col-span-6 col-span-12'} key={edge.node.slug}>
             <CARD>
               <SPACER>
                 <TEXT_BASE_CENTER>
