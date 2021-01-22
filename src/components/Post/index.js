@@ -111,8 +111,12 @@ const Post = ({ post }) => {
           </SPACER>
         </CARD>
       }
-      <TEXT_BASE_CENTER>この記事が面白い、参考になったと思ったらシェアをよろしくお願いします👋</TEXT_BASE_CENTER>
-      <ShareSns articleUrl={url + slug} articleTitle={title} />
+      <div className='my-4'>
+        <TEXT_BASE_CENTER>この記事が面白い、参考になったと思ったらシェアをよろしくお願いします👋</TEXT_BASE_CENTER>
+      </div>
+      <div className='my-2'>
+        <ShareSns articleUrl={url + slug} articleTitle={title} />
+      </div>
       <RelatedArticles tags={tags} slug={slug}/>
     </div>
   );
