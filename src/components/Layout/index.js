@@ -13,7 +13,7 @@ const Layout = ({
   side,
   title,
   description,
-  socialImage,
+  socialImage = 'https://res.cloudinary.com/dzaa4buiw/image/upload/v1608027823/web/medium_banner_f3182a0e74.png',
   top = false
 }) => {
   const {
