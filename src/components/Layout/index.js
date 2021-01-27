@@ -58,8 +58,6 @@ const Layout = ({
         <link rel="preconnect dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect dns-prefetch" href="https://b.st-hatena.com" />
 
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"/>
-
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content={top ? 'website' : 'article'} />

@@ -102,6 +102,12 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-plugin-google-adsense',
+      options: {
+        publisherId: config.secretConfig.googleAdsnseClientId
+      },
+    },
+    {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: config.siteConfig.url,
